@@ -2,12 +2,13 @@
   "name": "react-aldebarion",
   "version": "0.1.0",
   "description": "react implementation of the aldebarion guidelines",
-  "main": "index.js",
+  "main": "dist/reactAldebarion.js",
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack-dev-server --host 0.0.0.0 --inline --port=3000 --history-api-fallback --watch-poll",
-    "build": "cross-env NODE_ENV=production webpack --define process.env.NODE_ENV='\"production\"' -p --output-path . ",
+    "build": "cross-env NODE_ENV=production webpack --define process.env.NODE_ENV='\"production\"' -p --output-path dist/ --config webpack.production.config.js",
     "lint": "eslint --ext js,jsx src && find ./src/ -iname \"*.scss\" -exec sass-lint -v -q {} +",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "npm run build"
   },
   "repository": {
     "type": "git",
