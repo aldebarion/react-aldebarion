@@ -1,16 +1,21 @@
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-console */
 const path = require('path')
-// const webpack = require('webpack')
+const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const autoprefixer = require('autoprefixer')
 // const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-const dev = false
+const dev = (process.env.NODE_ENV !== 'production')
 
 console.log(`MODE=${dev ? 'dev' : 'production'}`)
 
 function getEntrySources(sources) {
+  if (dev) {
+    sources.push('webpack-dev-server/client?http://localhost:3000')
+    sources.push('webpack/hot/only-dev-server')
+  }
+
   return sources
 }
 
@@ -27,9 +32,9 @@ function getPlugins(plugins) {
   //   inject: true,
   //   hash: true,
   // }))
-  //
-  // if (dev) plugins.push(new webpack.HotModuleReplacementPlugin())
-  plugins.push(new ExtractTextPlugin('[name].css'))
+
+  if (dev) plugins.push(new webpack.HotModuleReplacementPlugin())
+  else plugins.push(new ExtractTextPlugin('[name].css'))
 
   return plugins
 }
