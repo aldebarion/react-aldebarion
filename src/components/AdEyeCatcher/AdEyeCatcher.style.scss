@@ -1,0 +1,114 @@
+@import "../../style/index";
+
+
+.adEyeCatcher {
+  position: relative;
+  overflow: hidden;
+  margin-top: 0px;
+
+  &:before {
+    background: $foreground;
+  }
+
+  $horizontalHeight: 2px;
+  $verticalWidth: 2px;
+  $verticalBarWidth: 2px;
+
+  &.fromleft.toright {
+    height: $horizontalHeight;
+    width: 200px;
+    &:before {
+      display: block;
+      content: " ";
+      height: 100%;
+      width: 30%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      @keyframes eyecatcherRight {
+        0% {
+          left: - 35%;
+        }
+
+        100% {
+          left: 105%;
+        }
+      }
+
+      animation: eyecatcherRight 1.5s infinite;
+    }
+  }
+
+  &.fromright.toleft {
+    height: $horizontalHeight;
+    width: 200px;
+    &:before {
+      display: block;
+      content: " ";
+      height: 100%;
+      width: 30%;
+      position: absolute;
+      top: 0;
+      right: 0;
+      @keyframes eyecatcherLeft {
+        0% {
+          right: - 35%;
+        }
+
+        100% {
+          right: 105%;
+        }
+      }
+      animation: eyecatcherLeft 1.5s infinite;
+    }
+  }
+
+  &.fromtop.tobottom {
+    width: $verticalWidth;
+    height: 200px;
+    &:before {
+      display: block;
+      content: " ";
+      width: 100%;
+      height: 30%;
+      position: absolute;
+      left: 0;
+      top: 0%;
+      @keyframes eyecatcherBottom {
+        0% {
+          top: - 35%;
+        }
+
+        100% {
+          top: 105%;
+        }
+      }
+      animation: eyecatcherBottom 1.5s infinite;
+    }
+  }
+
+  &.frombottom.totop {
+    width: $verticalWidth;
+    height: 200px;
+    &:before {
+      display: block;
+      content: " ";
+      width: 100%;
+      height: 30%;
+      position: absolute;
+      left: 0;
+      bottom: 0%;
+      @keyframes eyecatcherTop {
+        0% {
+          bottom: - 35%;
+        }
+
+        100% {
+          bottom: 105%;
+        }
+      }
+      animation: eyecatcherTop 1.5s infinite;
+    }
+  }
+
+}

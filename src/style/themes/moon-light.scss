@@ -1,0 +1,50 @@
+
+/* colors */
+$foreground: white;
+$foreground_hue1: rgba(255, 255, 255, 0.2); // darken(white, 30%);
+$foreground_hue2: #757575;
+$foreground_hue3: #828282;
+
+$background: #100f11;
+
+
+$backgroundImg: url('./../img/cross.png');
+
+/* fonts */
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,500,600,700');
+
+@mixin font {
+  font-family: 'Raleway', sans-serif;
+  -webkit-font-smoothing: antialiased!important;
+  -moz-osx-font-smoothing: grayscale!important;
+  font-weight: 400;
+}
+
+@mixin fontSemiBold {
+  font-family: 'Raleway', sans-serif;
+  -webkit-font-smoothing: antialiased!important;
+  -moz-osx-font-smoothing: grayscale!important;
+  font-weight: 500;
+}
+
+
+@mixin fontBold {
+  font-family: 'Raleway', sans-serif;
+  -webkit-font-smoothing: antialiased!important;
+  -moz-osx-font-smoothing: grayscale!important;
+  font-weight: 600;
+}
+
+@mixin fontExtraBold {
+  font-family: 'Raleway', sans-serif;
+  -webkit-font-smoothing: antialiased!important;
+  -moz-osx-font-smoothing: grayscale!important;
+  font-weight: 700;
+}
+
+
+/* font icons */
+@import url('https://cdn.jsdelivr.net/themify-icons/0.1.2/css/themify-icons.css');
+
+
+@import url('https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css');

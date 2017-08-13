@@ -1,0 +1,15 @@
+@import "../../style/index";
+
+.adSlide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 10px;
+  height: 100%;
+  width: 100%;
+  flex: 0 0 100%;
+  color: $foreground;
+
+  @include font;
+}

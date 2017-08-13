@@ -1,0 +1,23 @@
+@mixin noSelect {
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+// https://www.sitepoint.com/better-solution-managing-z-index-sass/
+
+@function z($layer) {
+  $z-layers: (
+    "button":            50
+  );
+
+  @return map-get($z-layers, $layer);
+}
+
+
+@mixin layoutCenter() {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

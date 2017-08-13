@@ -1,0 +1,51 @@
+/* animations */
+$defaultDuration: 0.2s;
+$longDuration: 0.4s;
+$veryLongDuration: 10s;
+
+$defaultFunction: linear;
+
+@mixin transition($properties) {
+  -webkit-transition: $properties;
+  -o-transition: $properties;
+  -moz-transition: $properties;
+  transition: $properties;
+}
+
+@mixin transform($properties) {
+  -webkit-transform: $properties;
+  -moz-transform: $properties;
+  transform: $properties;
+}
+
+@mixin rotate($angle) {
+  -ms-transform: rotate($angle);
+  -moz-transform: rotate($angle);
+  -webkit-transform: rotate($angle);
+  -o-transform: rotate($angle);
+  transform: rotate($angle);
+}
+
+@mixin rotateInfinite() {
+  @-webkit-keyframes rotating /* Safari and Chrome */ {
+    from {
+      @include rotate(0deg);
+    }
+    to {
+      @include rotate(360deg);
+    }
+  }
+  @keyframes rotating {
+    from {
+      @include rotate(0deg);
+    }
+    to {
+      @include rotate(360deg);
+    }
+  }
+  -webkit-animation: rotating 2s linear infinite;
+  -moz-animation: rotating 2s linear infinite;
+  -ms-animation: rotating 2s linear infinite;
+  -o-animation: rotating 2s linear infinite;
+  animation: rotating 2s linear infinite;
+}

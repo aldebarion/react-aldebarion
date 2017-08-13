@@ -1,0 +1,87 @@
+@import "../../../style/index";
+
+.adSwitchButton {
+  @include borderedWidget;
+  // display: inline-block;
+  display: inline-flex;
+
+  &.normalSize {
+    margin-right: $formNormalMargin;
+    margin-bottom: $formNormalMargin;
+    padding: 0;
+    font-size: 0;
+
+    .adSwitchButtonOption {
+      padding: 12px 20px;
+    }
+  }
+
+  &.left {
+    .adSwitchButtonPanel {
+      left: -50%;
+    }
+  }
+
+  &.right {
+    .adSwitchButtonPanel {
+      left: 55%;
+    }
+  }
+
+  .adSwitchButtonPanel {
+    content: " ";
+    position: absolute;
+    z-index: z('button') - 1;
+    bottom: 0;
+    width: 100%;
+    height: 500%;
+    display: block;
+    box-sizing: border-box;
+    background: $foreground;
+    transform-origin: bottom right;
+
+    @include transform(rotate(-10deg));
+
+    @include transition(left linear $defaultDuration);
+  }
+
+
+  .adSwitchButtonOption {
+    // display: inline-block;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    color: $foreground;
+    @include noSelect;
+    font-size: 0.95em;
+    font-size: 15.2px;
+    vertical-align: middle;
+    text-transform: uppercase;
+    @include fontBold;
+    display: inline-block;
+    z-index: z('button') + 1;
+    flex: 1 1 auto;
+
+    &.active {
+      color: $background;
+    }
+
+    &:active, &:focus {
+      outline: none;
+    }
+
+    &::-moz-focus-inner {
+      border: 0;
+    }
+
+    // & + & {
+    //   margin-left: 30px;
+    // }
+
+
+  }
+
+
+
+}

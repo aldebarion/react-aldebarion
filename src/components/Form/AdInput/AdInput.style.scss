@@ -1,0 +1,147 @@
+@import "../../../style/index";
+
+.adInput {
+
+  box-sizing: border-box;
+  background-color: transparent;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: stretch;
+  justify-content: left;
+  position: relative;
+  z-index: z('button');
+
+  &.fluid {
+    display: block;
+    width: 100%;
+  }
+
+  &.normalSize {
+    border: $borderNormalWidth solid $foreground;
+    margin-bottom: $formNormalMargin;
+    height: $widgetNormalHeight;
+    $inputWidth: 350px;
+    width: $inputWidth;
+
+
+    &:not(.fluid) {
+      margin-right: $formNormalMargin;
+    }
+  }
+
+  .adInputContent {
+    flex: 1 1 auto;
+    height: 100%;
+    display: flex;
+    position: relative;
+  }
+
+  .adInputSubContent {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    position: relative,
+  }
+
+  .adInputSubContentInput {
+    height: 100%;
+    flex: 1 1;
+    padding: 12px;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: $foreground;
+    @include font;
+    display: inline-block;
+    font-size: 0.95em;
+    min-width: 0px;
+    // text-transform: uppercase;
+
+    &::placeholder, &::-webkit-input-placeholder, &::-moz-placeholder, &:-ms-input-placeholder, &:-moz-placeholder { /* Chrome/Opera/Safari */
+      color: blue; //$foreground_hue2;
+      text-transform: uppercase;
+    }
+  }
+
+  .adInputIcon {
+    // height: 100%;
+
+    background: $foreground;
+    display: inline-block;
+    background-color: $foreground;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    i {
+      font-weight: 700;
+      color: $background;
+    }
+
+    &.normalSize {
+      $buttonWidth: 45px;
+      flex: 0 0 $buttonWidth;
+      width: $buttonWidth;
+    }
+  }
+
+  .adInputButton {
+    outline: none;
+    border: none;
+    background: $foreground;
+    display: inline-block;
+    background-color: $foreground;
+    opacity: 0;
+    $properties: opacity $defaultFunction $defaultDuration;
+    @include transition($properties);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    i {
+      font-weight: 700;
+      color: $background;
+      @include transition(color $defaultFunction $defaultDuration);
+    }
+
+    &.normalSize {
+      $buttonWidth: 45px;
+      flex: 0 0 $buttonWidth;
+      width: $buttonWidth;
+    }
+
+    &.adInputButtonShow {
+      opacity: 1;
+      cursor: pointer;
+    }
+  }
+
+  .adInputIndicator {
+    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    @include transition(opacity $defaultFunction $defaultDuration);
+
+    i {
+      font-weight: 700;
+      color: $foreground;
+
+      &.rotating {
+        @include rotateInfinite();
+      }
+    }
+
+    &.adInputIndicatorShow {
+      opacity: 1;
+    }
+
+
+
+    &.normalSize {
+      $buttonWidth: 45px;
+      flex: 0 0 $buttonWidth;
+      width: $buttonWidth;
+    }
+  }
+
+}

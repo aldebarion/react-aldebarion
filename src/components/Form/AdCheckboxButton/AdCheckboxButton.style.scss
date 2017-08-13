@@ -1,0 +1,75 @@
+@import "../../../style/index";
+
+.adCheckboxButton {
+
+  display: block;
+
+  &.fluid {
+
+  }
+
+  &.normalSize {
+    margin-bottom: $formNormalMargin;
+
+    &:not(.fluid) {
+      margin-right: $formNormalMargin;
+    }
+  }
+
+}
+
+.adCheckboxButtonOption {
+  display: inline-block;
+  background: transparent;
+  border: none;
+  outline: none;
+  vertical-align: middle;
+
+  &.fluid {
+    display: block;
+  }
+
+  &:active, &:focus {
+    outline: none;
+  }
+
+  &::-moz-focus-inner {
+    border: 0;
+  }
+
+  &.normalSize {
+    margin-right: $formNormalMargin;
+    margin-bottom: $formNormalMargin;
+
+    .adCheckboxButtonOptionLabel {
+      padding-left: $formNormalMargin;
+    }
+  }
+
+  .adCheckboxButtonOptionContent {
+    cursor: pointer;
+    display: inline-block;
+  }
+
+
+  .adCheckboxButtonOptionIcon {
+    display: inline-block;
+    color: $foreground;
+    font-size: 1.5em;
+    vertical-align: middle;
+    cursor: pointer;
+  }
+
+
+  .adCheckboxButtonOptionLabel {
+    display: inline-block;
+    @include noSelect;
+    color: $foreground;
+    // font-size: 1.2em;
+    font-size: 0.95em;
+    vertical-align: middle;
+    text-transform: uppercase;
+    @include fontBold;
+    cursor: pointer;
+  }
+}
