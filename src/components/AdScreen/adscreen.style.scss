@@ -1,3 +1,5 @@
+@import "../../style/index";
+
 .adscreen {
   position: absolute;
   top: 0;
@@ -8,4 +10,65 @@
   background: url('./cross.png');
   background-repeat: repeat;
   background-position: center center;
+
+
+  h1 {
+    color: $foreground;
+    text-transform: uppercase;
+    font-size: 2.4em;
+    margin: 0;
+    padding: 0 0 20px 0;
+    @include fontExtraBold;
+  }
+
+  h2 {
+    color: $foreground_hue2;
+    font-size: 1.7em;
+    margin: 0;
+    padding: 0 0 20px 0;
+    @include fontBold;
+
+  }
+
+  h3 {
+    color: $foreground;
+    text-transform: uppercase;
+    font-size: 1.4em;
+    margin: 0;
+    padding: 0 0 10px 0;
+    @include fontExtraBold;
+  }
+
+  p {
+    @include font;
+    line-height: 1.4em;
+    text-align: justify;
+    color: $foreground;
+    font-size: 1.0em;
+
+    &.light {
+      color: $foreground_hue2;
+      font-size: 0.97em;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+
+      &:not([href=""]) {
+        cursor: pointer;
+        @include fontBold;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  strong {
+    @include fontExtraBold;
+    text-transform: uppercase;
+  }
+
+
 }

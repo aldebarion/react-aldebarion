@@ -5,8 +5,8 @@
   "main": "dist/index.js",
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack-dev-server",
-    "start:production": "npm run build && cross-env NODE_ENV=development LIB=from_dist webpack-dev-server --host 0.0.0.0 --inline --port=3000 --history-api-fallback --watch-poll",
-    "build": "cross-env NODE_ENV=production webpack",
+    "start:production": "npm run build && cross-env NODE_ENV=development LIB=from_dist webpack-dev-server",
+    "build": "cross-env NODE_ENV=production webpack --display-error-details",
     "lint": "eslint --ext js,jsx src && find ./src/ -iname \"*.scss\" -exec sass-lint -v -q {} +",
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "npm run build"
@@ -30,7 +30,7 @@
     "autoprefixer": "^6.5.1",
     "babel-core": "~6.14.0",
     "babel-eslint": "~6.1.2",
-    "babel-loader": "~6.2.4",
+    "babel-loader": "^7.1.1",
     "babel-plugin-syntax-class-properties": "~6.13.0",
     "babel-plugin-transform-class-properties": "~6.11.5",
     "babel-plugin-transform-object-rest-spread": "~6.8.0",

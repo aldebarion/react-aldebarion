@@ -3,7 +3,7 @@
 const path = require('path')
 const webpack = require('webpack')
 // const ExtractTextPlugin = require('extract-text-webpack-plugin')
-// const autoprefixer = require('autoprefixer')
+const autoprefixer = require('autoprefixer')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const libraryName = 'react-aldebarion'
@@ -11,6 +11,19 @@ const libraryName = 'react-aldebarion'
 // minify or not
 // entry sources (examples or src)
 const dev = (process.env.NODE_ENV !== 'production')
+const useCompiledAldebarion = (process.env.LIB === 'from_dist')
+
+
+const AUTOPREFIXER_BROWSERS = [
+  'Android 2.3',
+  'Android >= 4',
+  'Chrome >= 35',
+  'Firefox >= 31',
+  'Explorer >= 9',
+  'iOS >= 7',
+  'Opera >= 12',
+  'Safari >= 7.1',
+]
 
 console.log(`MODE=${dev ? 'dev' : 'production'}`)
 
@@ -18,50 +31,51 @@ module.exports = {
   devtool: dev ? 'inline-source-map' : 'cheap-module-source-map',
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'index.js',
+    filename: '[name]',
     library: dev ? undefined : libraryName,
     libraryTarget: dev ? 'var' : 'umd',
   },
   entry: (() => {
-    const sources = []
+    const sources = {}
+    // if (dev) {
+    //   sources.push('webpack-dev-server/client?http://localhost:3000')
+    //   sources.push('webpack/hot/only-dev-server')
+    //   // sources.push('react-hot-loader/patch')
+    // }
     if (dev) {
-      sources.push('webpack-dev-server/client?http://localhost:3000')
-      sources.push('webpack/hot/only-dev-server')
-      // sources.push('react-hot-loader/patch')
-      sources.push(path.resolve('./examples/index.jsx'))
-      if (process.env.LIB === 'from_dist') {
-        sources.push(path.resolve('./examples/style.js'))
-      }
+      sources['index.js'] = path.join(__dirname, './examples/index.jsx')
     } else {
-      sources.push(path.resolve('./src/index.js'))
+      sources['index.js'] = path.join(__dirname, './src/index.js')
+      // sources['style.css'] = './style/style.scss'
     }
+
 
     return sources
   })(),
   devServer: {
     port: 3000,
-    contentBase: './examples',
+    contentBase: path.join(__dirname, './examples'),
     hot: dev,
   },
   context: (() => {
     if (dev) {
-      return path.resolve('examples')
+      return path.join(__dirname, 'examples')
     }
-    return path.resolve('src')
+    return path.join(__dirname, 'src')
   })(),
   resolve: {
-    extensions: ['*', '.js', '.jsx', '.scss', '.jpg', '.png'],
-    modules: ['./node_modules'],
+    extensions: ['*', '.js', '.jsx', '.scss', '.jpg', '.png', '.gif'],
+    modules: ['node_modules'],
     alias: (() => {
       if (dev) {
-        if (process.env.LIB === 'from_dist') {
+        if (useCompiledAldebarion) {
           return {
-            'react-aldebarion': path.resolve('./dist'),
-            'react-aldebarion/dist/reactAldebarion.css': path.resolve('./dist/reactAldebarion.css'),
+            'react-aldebarion': path.join(__dirname, './dist'),
+            'react-aldebarion/dist/reactAldebarion.css': path.join(__dirname, './dist/reactAldebarion.css'),
           }
         }
         return {
-          'react-aldebarion': path.resolve('./src'),
+          'react-aldebarion': path.join(__dirname, './src'),
         }
       }
       return {}
@@ -81,29 +95,23 @@ module.exports = {
       exclude: /node_modules/,
     }, {
       test: /global\.scss/,
-      loaders: ['style-loader', 'css-loader?modules', 'sass-loader'],
+      loaders: ['style-loader', 'css-loader?modules', /* 'postcss-loader',*/ 'sass-loader'],
     }, {
       test: /\.scss$/,
-      exclude: [/node_modules/, /global\.scss/, /reactAldebarion\.css$/],
-      loaders: ['style-loader', 'css-loader?modules', 'sass-loader'],
-    }, {
-      test: /reactAldebarion\.css$/,
-      loaders: ['style-loader', 'css-loader', 'css-loader?modules'],
-    }, /* {
-      test: /\.html$/,
-      loaders: ['html-loader'],
-    }*/],
+      exclude: [/node_modules/, /global\.scss/],
+      loaders: ['style-loader', 'css-loader?modules', /* 'postcss-loader',*/ 'sass-loader'],
+    }],
   },
   plugins: (() => {
+    const plugins = []
     if (dev) {
-      return [
-        new webpack.HotModuleReplacementPlugin(),
-        new HtmlWebpackPlugin({
-          template: 'index.html',
-        }),
-      ]
+      plugins.push(new webpack.HotModuleReplacementPlugin())
+      plugins.push(new HtmlWebpackPlugin({
+        template: 'index.html',
+      }))
     }
-    return []
+
+    return plugins
   })(),
   performance: {
     hints: false,
