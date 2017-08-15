@@ -2,97 +2,110 @@
 /* eslint-disable no-console */
 const path = require('path')
 const webpack = require('webpack')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const autoprefixer = require('autoprefixer')
+// const ExtractTextPlugin = require('extract-text-webpack-plugin')
+// const autoprefixer = require('autoprefixer')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
+const libraryName = 'react-aldebarion'
+
+// minify or not
+// entry sources (examples or src)
 const dev = (process.env.NODE_ENV !== 'production')
 
 console.log(`MODE=${dev ? 'dev' : 'production'}`)
 
-function getEntrySources(sources) {
-  if (dev) {
-    sources.push('webpack-dev-server/client?http://localhost:3000')
-    sources.push('webpack/hot/only-dev-server')
-  }
-
-  return sources
-}
-
-function getLoaders(loaders) {
-  if (dev) loaders.push('react-hot')
-  loaders.push('babel')
-
-  return loaders
-}
-
-function getPlugins(plugins) {
-  plugins.push(new HtmlWebpackPlugin({
-    template: 'examples/index.html',
-    inject: true,
-    hash: true,
-  }))
-
-  if (dev) plugins.push(new webpack.HotModuleReplacementPlugin())
-  else plugins.push(new ExtractTextPlugin('[name].css'))
-
-  return plugins
-}
-
-function getRawCssLoaders(module, inject) {
-  const loaders = []
-  if (inject) loaders.push('style')
-  loaders.push(`css${module ? '?modules&localIdentName=[path]_[local]__[hash:base64:5]' : ''}`)
-  if (!dev) loaders.push('postcss')
-  loaders.push('sass')
-
-  return loaders
-}
-
-function getImageCssLoaders(module, inject) {
-  const loaders = []
-  if (inject) loaders.push('file-loader?emitFile=false!')
-  // loaders.push(`css${module ? '?modules&localIdentName=[path]_[local]__[hash:base64:5]' : ''}`)
-  return loaders
-}
-
 module.exports = {
-  devtool: dev ? 'eval' : '',
-  entry: {
-    reactAldebarion: getEntrySources([
-      './src',
-      './examples',
-    ]),
-  },
+  devtool: dev ? 'inline-source-map' : 'cheap-module-source-map',
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: '[name].js',
-    publicPath: '/',
+    filename: 'index.js',
+    library: dev ? undefined : libraryName,
+    libraryTarget: dev ? 'var' : 'umd',
   },
+  entry: (() => {
+    const sources = []
+    if (dev) {
+      sources.push('webpack-dev-server/client?http://localhost:3000')
+      sources.push('webpack/hot/only-dev-server')
+      // sources.push('react-hot-loader/patch')
+      sources.push(path.resolve('./examples/index.jsx'))
+      if (process.env.LIB === 'from_dist') {
+        sources.push(path.resolve('./examples/style.js'))
+      }
+    } else {
+      sources.push(path.resolve('./src/index.js'))
+    }
+
+    return sources
+  })(),
+  devServer: {
+    port: 3000,
+    contentBase: './examples',
+    hot: dev,
+  },
+  context: (() => {
+    if (dev) {
+      return path.resolve('examples')
+    }
+    return path.resolve('src')
+  })(),
   resolve: {
-    root: [path.resolve('./src'), path.resolve('examples'), path.resolve('examples/components')],
-    extensions: ['', '.js', '.jsx', '.scss', '.jpg', '.png'],
+    extensions: ['*', '.js', '.jsx', '.scss', '.jpg', '.png'],
+    modules: ['./node_modules'],
+    alias: (() => {
+      if (dev) {
+        if (process.env.LIB === 'from_dist') {
+          return {
+            'react-aldebarion': path.resolve('./dist'),
+            'react-aldebarion/dist/reactAldebarion.css': path.resolve('./dist/reactAldebarion.css'),
+          }
+        }
+        return {
+          'react-aldebarion': path.resolve('./src'),
+        }
+      }
+      return {}
+    })(),
   },
-  plugins: getPlugins([]),
   module: {
-    loaders: [{
+    rules: [{
       test: /\.jsx?$/,
-      loaders: getLoaders([]),
+      loaders: ['react-hot-loader', 'babel-loader?presets[]=react,presets[]=es2015,presets[]=es2017,presets[]=stage-0'],
       exclude: /node_modules/,
     }, {
-      test: /\.(jpg|png)$/,
-      loaders: getImageCssLoaders(false, true),
+      test: /\.(jpg|png|gif)$/,
+      loaders: [
+        'file-loader?hash=sha512&digest=hex&name=[hash].[ext]',
+        'image-webpack-loader?bypassOnDebug&optipng.optimizationLevel=7&gifsicle.interlaced=false',
+      ],
       exclude: /node_modules/,
     }, {
       test: /global\.scss/,
-      loaders: dev ? getRawCssLoaders(false, true) : [],
-      loader: dev ? '' : ExtractTextPlugin.extract(getRawCssLoaders(false)),
+      loaders: ['style-loader', 'css-loader?modules', 'sass-loader'],
     }, {
-      test: /\.s?css$/,
-      exclude: [/node_modules/, /global\.scss/],
-      loaders: dev ? getRawCssLoaders(true, true) : [],
-      loader: dev ? '' : ExtractTextPlugin.extract(getRawCssLoaders(true)),
-    }],
+      test: /\.scss$/,
+      exclude: [/node_modules/, /global\.scss/, /reactAldebarion\.css$/],
+      loaders: ['style-loader', 'css-loader?modules', 'sass-loader'],
+    }, {
+      test: /reactAldebarion\.css$/,
+      loaders: ['style-loader', 'css-loader', 'css-loader?modules'],
+    }, /* {
+      test: /\.html$/,
+      loaders: ['html-loader'],
+    }*/],
   },
-  postcss: () => [autoprefixer],
+  plugins: (() => {
+    if (dev) {
+      return [
+        new webpack.HotModuleReplacementPlugin(),
+        new HtmlWebpackPlugin({
+          template: 'index.html',
+        }),
+      ]
+    }
+    return []
+  })(),
+  performance: {
+    hints: false,
+  },
 }

@@ -13,7 +13,6 @@ import Hud from './Hud'
 // import Research from './Pages/Research'
 // import AgileTouch from './Pages/AgileTouch'
 
-
 import '../global.scss'
 
 const App = () => {

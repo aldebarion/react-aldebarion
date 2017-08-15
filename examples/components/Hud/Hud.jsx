@@ -6,9 +6,6 @@ import style from './Hud.style'
 
 // import Nav from '../Nav'
 
-import {
-
-} from '../../../src'
 
 class Hud extends Component {
 

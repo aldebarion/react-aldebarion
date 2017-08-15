@@ -2,10 +2,7 @@ import React, { PropTypes, Component } from 'react'
 // import { Link } from 'react-router'
 // import Typist from 'react-typist'
 
-import style from './api.style'
-
-// import Nav from '../Nav'
-
+/* eslint-disable import/no-extraneous-dependencies */
 import {
   AdButton,
   AdScreen,
@@ -22,7 +19,13 @@ import {
   AdEyeCatcher,
   AdCarousel,
   AdSlide,
-} from '../../../src'
+} from 'react-aldebarion'
+
+
+import style from './api.style'
+
+// import Nav from '../Nav'
+
 
 class Api extends Component {
 
