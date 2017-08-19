@@ -26,6 +26,7 @@
   .adIconButtonLabel {
     padding-top: 5px;
     opacity: 0;
+    @include font;
     color: $foreground;
     font-size: 0.7em;
     @include transition(opacity $defaultFunction $defaultDuration);

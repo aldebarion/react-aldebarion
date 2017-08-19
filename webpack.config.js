@@ -3,7 +3,7 @@
 const path = require('path')
 const webpack = require('webpack')
 // const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const autoprefixer = require('autoprefixer')
+// const autoprefixer = require('autoprefixer')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const libraryName = 'react-aldebarion'
@@ -12,40 +12,45 @@ const libraryName = 'react-aldebarion'
 // entry sources (examples or src)
 const dev = (process.env.NODE_ENV !== 'production')
 const useCompiledAldebarion = (process.env.LIB === 'from_dist')
+const buildExamples = (process.env.BUILD === 'examples')
 
-
-const AUTOPREFIXER_BROWSERS = [
-  'Android 2.3',
-  'Android >= 4',
-  'Chrome >= 35',
-  'Firefox >= 31',
-  'Explorer >= 9',
-  'iOS >= 7',
-  'Opera >= 12',
-  'Safari >= 7.1',
-]
+// const AUTOPREFIXER_BROWSERS = [
+//   'Android 2.3',
+//   'Android >= 4',
+//   'Chrome >= 35',
+//   'Firefox >= 31',
+//   'Explorer >= 9',
+//   'iOS >= 7',
+//   'Opera >= 12',
+//   'Safari >= 7.1',
+// ]
 
 console.log(`MODE=${dev ? 'dev' : 'production'}`)
 
 module.exports = {
   devtool: dev ? 'inline-source-map' : 'cheap-module-source-map',
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: buildExamples ? path.join(__dirname, '.') : path.join(__dirname, 'dist'),
     filename: '[name]',
-    library: dev ? undefined : libraryName,
-    libraryTarget: dev ? 'var' : 'umd',
+    library: dev && !buildExamples ? undefined : libraryName,
+    libraryTarget: dev && !buildExamples ? 'var' : 'umd',
+    publicPath: '/',
   },
   entry: (() => {
-    const sources = {}
-    // if (dev) {
-    //   sources.push('webpack-dev-server/client?http://localhost:3000')
-    //   sources.push('webpack/hot/only-dev-server')
-    //   // sources.push('react-hot-loader/patch')
-    // }
+    const sources = []
     if (dev) {
-      sources['index.js'] = path.join(__dirname, './examples/index.jsx')
+      // sources.push('webpack-dev-server/client?http://localhost:3000')
+      sources.push('webpack/hot/only-dev-server')
+      // sources.push('react-hot-loader/patch')
+    }
+    if (buildExamples) {
+      if (dev) {
+        sources.push(path.join(__dirname, './examples/index.jsx'))
+      } else {
+        return { 'index.js': path.join(__dirname, './examples/index.jsx') }
+      }
     } else {
-      sources['index.js'] = path.join(__dirname, './src/index.js')
+      sources.push(path.join(__dirname, './src/index.js'))
       // sources['style.css'] = './style/style.scss'
     }
 
@@ -55,10 +60,11 @@ module.exports = {
   devServer: {
     port: 3000,
     contentBase: path.join(__dirname, './examples'),
-    hot: dev,
+    hot: false,
+    historyApiFallback: true,
   },
   context: (() => {
-    if (dev) {
+    if (buildExamples) {
       return path.join(__dirname, 'examples')
     }
     return path.join(__dirname, 'src')
@@ -67,11 +73,10 @@ module.exports = {
     extensions: ['*', '.js', '.jsx', '.scss', '.jpg', '.png', '.gif'],
     modules: ['node_modules'],
     alias: (() => {
-      if (dev) {
+      if (buildExamples) {
         if (useCompiledAldebarion) {
           return {
             'react-aldebarion': path.join(__dirname, './dist'),
-            'react-aldebarion/dist/reactAldebarion.css': path.join(__dirname, './dist/reactAldebarion.css'),
           }
         }
         return {
@@ -84,7 +89,14 @@ module.exports = {
   module: {
     rules: [{
       test: /\.jsx?$/,
-      loaders: ['react-hot-loader', 'babel-loader?presets[]=react,presets[]=es2015,presets[]=es2017,presets[]=stage-0'],
+      loaders: (() => {
+        const loaders = []
+        if (dev) {
+          loaders.push('react-hot-loader')
+        }
+        loaders.push('babel-loader?presets[]=react,presets[]=es2015,presets[]=es2017,presets[]=stage-0')
+        return loaders
+      })(),
       exclude: /node_modules/,
     }, {
       test: /\.(jpg|png|gif)$/,
@@ -95,17 +107,20 @@ module.exports = {
       exclude: /node_modules/,
     }, {
       test: /global\.scss/,
-      loaders: ['style-loader', 'css-loader?modules', /* 'postcss-loader',*/ 'sass-loader'],
+      loaders: ['style-loader', 'css-loader?modules', /* 'postcss-loader', */ 'sass-loader'],
     }, {
       test: /\.scss$/,
       exclude: [/node_modules/, /global\.scss/],
-      loaders: ['style-loader', 'css-loader?modules', /* 'postcss-loader',*/ 'sass-loader'],
+      loaders: ['style-loader', 'css-loader?modules', /* 'postcss-loader', */ 'sass-loader'],
     }],
   },
   plugins: (() => {
     const plugins = []
     if (dev) {
       plugins.push(new webpack.HotModuleReplacementPlugin())
+    }
+
+    if (buildExamples) {
       plugins.push(new HtmlWebpackPlugin({
         template: 'index.html',
       }))

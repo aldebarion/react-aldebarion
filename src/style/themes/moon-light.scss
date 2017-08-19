@@ -7,11 +7,14 @@ $foreground_hue3: #828282;
 
 $background: #100f11;
 
+$border: #2d3f41;
+$border2: #55686c;
 
 $backgroundImg: url('./../img/cross.png');
 
 /* fonts */
-@import url('https://fonts.googleapis.com/css?family=Raleway:400,500,600,700');
+// @import url('https://fonts.googleapis.com/css?family=Raleway:400,500,600,700');
+@import url('https://fonts.googleapis.com/css?family=PT+Mono|Raleway:400,500,600,700');
 
 @mixin font {
   font-family: 'Raleway', sans-serif;
@@ -37,6 +40,13 @@ $backgroundImg: url('./../img/cross.png');
 
 @mixin fontExtraBold {
   font-family: 'Raleway', sans-serif;
+  -webkit-font-smoothing: antialiased!important;
+  -moz-osx-font-smoothing: grayscale!important;
+  font-weight: 700;
+}
+
+@mixin fontType {
+  font-family: 'PT Mono', monospace;
   -webkit-font-smoothing: antialiased!important;
   -moz-osx-font-smoothing: grayscale!important;
   font-weight: 700;

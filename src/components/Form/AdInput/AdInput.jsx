@@ -137,9 +137,9 @@ AdInput.propTypes = {
   button: PropTypes.string,
   placeholder: PropTypes.string,
   onClick: PropTypes.func,
-  showButton: PropTypes.oneOfType([PropTypes.boolean, PropTypes.func]),
+  showButton: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
   showIndicator: PropTypes.func,
-  loadingIndicator: PropTypes.boolean,
+  loadingIndicator: PropTypes.bool,
 }
 
 AdInput.defaultProps = {

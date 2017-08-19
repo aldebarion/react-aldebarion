@@ -31,4 +31,15 @@
     background: $foreground;
     @include transition($defaultFunction $defaultDuration width);
   }
+
+
+  &.discreet {
+    .adProgressBarLabel {
+      color: $foreground_hue1;
+    }
+
+    .adProgressBarContent {
+      background: $foreground_hue1;
+    }
+  }
 }

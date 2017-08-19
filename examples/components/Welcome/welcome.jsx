@@ -1,21 +1,30 @@
-import React, { PropTypes } from 'react'
-// import { Link } from 'react-router'
-// import Typist from 'react-typist'
+import React from 'react'
+import PropTypes from 'prop-types'
 
 /* eslint-disable import/no-extraneous-dependencies */
-import { AdButton, AdScreen } from 'react-aldebarion'
+import { AdScreen, AdEyeCatcher } from 'react-aldebarion'
 
-
-// import styles from './welcome.style'
-
-// import Nav from '../Nav'
-
+import style from './Welcome.style'
 
 const Welcome = ({ className = '' }) => {
   return (
-    <div className={className}>
-      <AdScreen>
-        <AdButton label="button" />
+    <div className={`${className} ${style.welcome}`}>
+      <AdScreen className={style.screen}>
+        <div className={style.part1}>
+          <img className={style.background} src="/assets/planet.jpg" alt="planet" />
+          <div className={style.center}>
+            <h1>Aldebarion</h1>
+            <h2>The frontend framework built for the future</h2>
+
+          </div>
+          <AdEyeCatcher className={style.eyeCatcher} from="top" to="bottom" />
+
+        </div>
+        <div className={style.part2}>
+          <p>
+            fdsfds
+          </p>
+        </div>
       </AdScreen>
     </div>
   )
@@ -23,6 +32,10 @@ const Welcome = ({ className = '' }) => {
 
 Welcome.propTypes = {
   className: PropTypes.string,
+}
+
+Welcome.defaultProps = {
+  className: '',
 }
 
 // const LoadingIndicator = () => <div />

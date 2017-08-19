@@ -2,6 +2,8 @@
 
 **BE CAREFUL: this module is still in development, you should not use it except if you are ready to debug it yourself. A first release will be delivered soon.**
 
+> Do not hesitate to involve yourself.
+
 **React-Aldebarion** is the front-end framework built for the future.
 
 ![Smark desk](examples/assets/table.png)
@@ -12,12 +14,20 @@ This framework helps you to:
 * implement user interfaces for long life application and productivity based on maximum ergonomy and timeless design
 * increase efficiency with adaptive interfaces based on human experience
 
-> This project is still in development so do not hesitate to involve yourself.
+It is very adapted to implement interfaces for your control table, HUDS, dashboards, etc.
 
 ## Getting started
 
+
+### Installation
 ```bash
 $ npm install react-aldebarion
+```
+
+### Development
+
+```bash
+$ npm start
 ```
 
 ## Guidelines

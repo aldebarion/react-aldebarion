@@ -1,16 +1,12 @@
-import React, { PropTypes } from 'react'
-// import { Link } from 'react-router'
-// import Typist from 'react-typist'
+import React from 'react'
+import PropTypes from 'prop-types'
 
 import styles from './adscreen.style'
 
-// import Nav from '../Nav'
-
 const AdScreen = (props) => {
-  const { className = '', platform = 'computer' } = props
   return (
-    <div className={`${className} ${styles.adscreen}`}>
-        {props.children}
+    <div className={`${props.className} ${styles.adscreen} ${styles[`platform${props.platform}`]} ${styles[`background${props.background}`]}`}>
+      {props.children}
     </div>
   )
 }
@@ -18,7 +14,16 @@ const AdScreen = (props) => {
 AdScreen.propTypes = {
   className: PropTypes.string,
   platform: PropTypes.string,
+  background: PropTypes.string,
+  children: PropTypes.node.isRequired,
 }
+
+AdScreen.defaultProps = {
+  className: '',
+  platform: 'computer',
+  background: 'cross',
+}
+
 
 // const LoadingIndicator = () => <div />
 // export default loader(Vault, { LoadingIndicator })

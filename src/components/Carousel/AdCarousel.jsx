@@ -9,7 +9,6 @@ import AdStepBar from '../AdStepBar'
 import style from './AdCarousel.style'
 
 class AdCarousel extends AdWidget {
-
   constructor(props) {
     super(props)
 

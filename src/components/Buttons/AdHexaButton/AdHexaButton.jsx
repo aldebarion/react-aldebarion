@@ -6,7 +6,6 @@ import AdIcon from '../../AdIcon'
 import style from './AdHexaButton.style'
 
 class AdHexaButton extends AdWidget {
-
   render() {
     return (
       <div className={` ${style.adHexaButton} ${this.loadClassNames(style)}`} onClick={this.props.onClick}>
@@ -20,7 +19,7 @@ class AdHexaButton extends AdWidget {
 
 AdHexaButton.propTypes = {
   ...AdWidget.propTypes,
-  icon: PropTypes.string.required,
+  icon: PropTypes.string.isRequired,
   onClick: PropTypes.func,
 }
 

@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 
 const AdIcon = ({ className = '', icon = '' }) => {
   return <i className={`${className} ti-${icon}`} />
@@ -6,7 +7,7 @@ const AdIcon = ({ className = '', icon = '' }) => {
 
 AdIcon.propTypes = {
   className: PropTypes.string,
-  icon: PropTypes.string.required,
+  icon: PropTypes.string.isRequired,
 }
 
 AdIcon.defaultProps = {

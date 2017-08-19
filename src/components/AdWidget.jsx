@@ -1,8 +1,7 @@
-import React, { PropTypes, Component } from 'react'
-
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 export default class AdWidget extends Component {
-
   loadClassNames(style) {
     return `${this.props.className ? this.props.className : ''} ${this.loadSubClassNames(style)}`
   }

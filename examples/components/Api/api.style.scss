@@ -14,6 +14,7 @@
     font-size: 1.4em;
     font-weight: 200;
     vertical-align: top;
+    padding-bottom: 20px;
 
     i {
       // -webkit-font-smoothing: antialiased!important;
@@ -23,5 +24,11 @@
 
   .slider {
     height: 400px;
+  }
+
+  .loader {
+    width: 500px;
+    height: 400px;
+    margin: auto;
   }
 }

@@ -19,6 +19,8 @@ import {
   AdEyeCatcher,
   AdCarousel,
   AdSlide,
+  AdSeparator,
+  AdLoader,
 } from 'react-aldebarion'
 
 
@@ -90,7 +92,7 @@ class Api extends Component {
   render() {
     return (
       <div className={this.className}>
-        <AdScreen>
+        <AdScreen background="plain">
           <div className={style.api}>
             <h1>Aldebarion</h1>
             <h2>API</h2>
@@ -135,6 +137,7 @@ class Api extends Component {
 
             <div className={style.card}>
               <h3>progress bar</h3>
+              <p>Simple progress bars</p>
               <AdProgressBar value={10} />
 
               <AdProgressBar value={10} label="10%" />
@@ -144,6 +147,9 @@ class Api extends Component {
                 min={this.state.progressBarMin}
                 max={this.state.progressBarMax}
               />
+              <p>Discreet progress bars</p>
+              <AdProgressBar value={10} discreet />
+
             </div>
 
             <div className={style.card}>
@@ -156,7 +162,7 @@ class Api extends Component {
             </div>
             <div className={style.card}>
               <h3>Icons</h3>
-              <p>
+              <div>
                 <div className={style.icon} >
                   <AdIcon icon="user" />
                 </div>
@@ -166,8 +172,8 @@ class Api extends Component {
                 <div className={style.icon} >
                   <AdIcon icon="heart" />
                 </div>
-              </p>
-              <p>
+              </div>
+              <div>
                 <div className={style.icon} >
                   <AdIconButton icon="user" label="User" />
                 </div>
@@ -177,8 +183,8 @@ class Api extends Component {
                 <div className={style.icon} >
                   <AdIconButton icon="heart" label="Love" />
                 </div>
-              </p>
-              <p>
+              </div>
+              <div>
                 <div className={style.icon} >
                   <AdIconButton icon="user" label="User" discreet />
                 </div>
@@ -188,8 +194,8 @@ class Api extends Component {
                 <div className={style.icon} >
                   <AdIconButton icon="heart" label="Love" discreet />
                 </div>
-              </p>
-              <p>
+              </div>
+              <div>
                 <div className={style.icon} >
                   <AdHexaButton icon="user" />
                 </div>
@@ -199,8 +205,8 @@ class Api extends Component {
                 <div className={style.icon} >
                   <AdHexaButton icon="heart" />
                 </div>
-              </p>
-              <p>
+              </div>
+              <div>
                 <div className={style.icon}>
                   <AdHexaButton icon="user" discreet />
                 </div>
@@ -210,7 +216,7 @@ class Api extends Component {
                 <div className={style.icon}>
                   <AdHexaButton icon="heart" discreet />
                 </div>
-              </p>
+              </div>
               <p className="light">
                 <strong>Aldebarion</strong> uses Themify Icons. Find all of theme <a href="http://themify.me/themify-icons">there</a>.
               </p>
@@ -218,18 +224,18 @@ class Api extends Component {
             </div>
             <div className={style.card}>
               <h3>eye catcher</h3>
-              <p>
+              <div>
                 <AdEyeCatcher from="left" to="right" />
-              </p>
-              <p>
+              </div>
+              <div>
                 <AdEyeCatcher from="right" to="left" />
-              </p>
-              <p>
+              </div>
+              <div>
                 <AdEyeCatcher from="top" to="bottom" />
-              </p>
-              <p>
+              </div>
+              <div>
                 <AdEyeCatcher from="bottom" to="top" />
-              </p>
+              </div>
             </div>
             <div className={style.card}>
               <h3>carousel</h3>
@@ -240,6 +246,14 @@ class Api extends Component {
                 <AdSlide>slide 4</AdSlide>
               </AdCarousel>
             </div>
+            <div className={style.card}>
+              <h3>separator</h3>
+              <AdSeparator />
+            </div>
+            <div className={style.card}>
+              <h3>loader</h3>
+              <AdLoader className={style.loader} />
+            </div>
           </div>
         </AdScreen>
       </div>
@@ -249,6 +263,10 @@ class Api extends Component {
 
 Api.propTypes = {
   className: PropTypes.string,
+}
+
+Api.defaultProps = {
+  className: '',
 }
 
 // const LoadingIndicator = () => <div />

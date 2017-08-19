@@ -1,11 +1,11 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 
 import AdWidget from '../AdWidget'
 
 import style from './AdProgressBar.style'
 
 class AdProgressBar extends AdWidget {
-
   constructor(props) {
     super(props)
 

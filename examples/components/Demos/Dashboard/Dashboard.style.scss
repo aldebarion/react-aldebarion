@@ -1,0 +1,85 @@
+
+@import url('https://fonts.googleapis.com/css?family=PT+Mono|Raleway:400,500,600,700');
+
+.dashboard {
+
+  $padding: 20px;
+
+  padding: $padding;
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-start;
+
+  flex-direction: row;
+
+  .header {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 5px;
+
+    .logo {
+      $width: 30%;
+      width: $width;
+      flex: 0 0 $width;
+      margin-right: 5px;
+    }
+
+    .status {
+      flex: 1 1 auto;
+      font-family: 'PT Mono', monospace;
+      color: white;
+      text-align: center;
+      font-size: 3.3em;
+      padding-bottom: 5px;
+      border-bottom: 3px white solid;
+      margin-bottom: 5px;
+    }
+  }
+
+
+  .column1 {
+    flex: 0 0 18%;
+    margin-right: $padding;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    position: relative;
+    // border: 1px solid $foreground;
+  }
+
+  .board {
+    // height: 100%;
+    flex: 0 0 auto;
+  }
+
+
+
+  .board2 {
+    flex: 1 1 auto;
+    margin-top: $padding;
+  }
+
+  .column2 {
+    flex: 1 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    // border: 1px solid $foreground;
+  }
+
+  .column3 {
+    margin-left: $padding;
+    flex: 0 0 20%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    // border: 1px solid $foreground;
+  }
+
+  .chrono {
+    font-family: 'PT Mono', monospace;
+  }
+}
