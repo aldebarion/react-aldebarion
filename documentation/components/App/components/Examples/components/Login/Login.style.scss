@@ -1,0 +1,27 @@
+@import "~styles/themes";
+@import "~styles/transitions";
+
+.Login {
+  .restart {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 1.4em;
+    padding: 0;
+  }
+  .help {
+    .container {
+      height: 0;
+      .content {
+        width: 100%;
+        padding-top: 10px;
+        text-align: center;
+        height: 50px;
+
+        .text {
+          font-size: 0.8em;
+        }
+      }
+    }
+  }
+}

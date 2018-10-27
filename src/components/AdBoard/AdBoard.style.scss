@@ -5,6 +5,23 @@
   -webkit-font-smoothing: antialiased!important;
   -moz-osx-font-smoothing: grayscale!important;
 
+  * {
+    &::-webkit-scrollbar {
+      width: 4px;
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-track, ::-webkit-scrollbar-track-piece, ::-webkit-scrollbar-corner {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 0px;
+      @include interactionTransition;
+    }
+  }
+
+
   @each $theme in $themes {
     &.#{$theme} {
       background: background($theme);
@@ -46,6 +63,20 @@
         @include interactionTransition;
         &:hover {
           color: foreground($theme);
+        }
+      }
+
+      * {
+        &::-webkit-scrollbar-thumb {
+          border-radius: 0px;
+          border-color: foregroundHue1($theme);
+        }
+
+        &:hover {
+          &::-webkit-scrollbar-thumb {
+            border-radius: 0px;
+            border-color: foregroundHue2($theme);
+          }
         }
       }
     }

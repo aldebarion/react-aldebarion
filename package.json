@@ -7,10 +7,10 @@
   "author": "Thibault Friedrich",
   "license": "MIT",
   "scripts": {
-    "examples": "webpack-dev-server --mode development --open --config webpack.config.examples.dev.js",
-    "build": "webpack --mode production --config webpack.config.examples.prod.js",
+    "documentation": "webpack-dev-server --mode development --open --config webpack.config.documentation.dev.js",
+    "build": "webpack --mode production --config webpack.config.documentation.prod.js",
     "postinstall": "webpack --mode production --config webpack.config.prod.js",
-    "start": "webpack-dev-server --mode development --open --config webpack.config.examples.dev.js"
+    "start": "webpack-dev-server --mode development --open --config webpack.config.documentation.dev.js"
   },
   "dependencies": {
     "@babel/core": "^7.0.0-beta.55",

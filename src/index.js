@@ -11,6 +11,8 @@ export AdIcon from './components/AdIcon'
 export AdButton from './components/AdButton'
 export AdLoader from './components/AdLoader'
 export AdDice from './components/Animations/AdDice'
+export AdSlider from './components/Animations/AdSlider'
+export AdFixedScroll from './components/Layout/AdFixedScroll'
 
 export const ALDEBARION = 'ALDEBÅRIØN'
 

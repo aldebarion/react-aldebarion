@@ -56,7 +56,7 @@ class AdInput extends Component {
       this.focusListener = this.input.addEventListener('focus', () => {
         const { value } = this.state
         if (value !== null && value === defaultValue) {
-          this.input.setSelectionRange(0, value.length)
+          // this.input.setSelectionRange(0, value.length)
         }
       })
     }

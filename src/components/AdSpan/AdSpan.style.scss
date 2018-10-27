@@ -18,8 +18,9 @@
       }
 
       a {
-        text-decoration: none;
+        text-decoration: underline;
         color: map-get($foreground_hue1, $theme);
+        cursor: pointer;
 
 
         &:hover {

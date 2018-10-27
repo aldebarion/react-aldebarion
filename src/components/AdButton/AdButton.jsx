@@ -80,6 +80,7 @@ class AdButton extends Component {
       loading,
       onClick,
       target,
+      style: styleTmp,
     } = this.props
 
     return (
@@ -90,6 +91,7 @@ class AdButton extends Component {
               href
                 ? (
                   <a
+                    style={styleTmp}
                     href={href}
                     className={`${style.AdButton} ${style[theme]} ${loading ? style.loading : ''} ${style[type]} ${className} ${disabled ? style.disabled : ''}`}
                     onClick={onClick}
@@ -99,6 +101,7 @@ class AdButton extends Component {
                   </a>
                 ) : (
                   <button
+                    style={styleTmp}
                     type="button"
                     className={`${style.AdButton} ${style[theme]} ${loading ? style.loading : ''} ${style[type]} ${className}`}
                     disabled={disabled}
@@ -133,6 +136,7 @@ AdButton.propTypes = {
   onClick: PropTypes.func,
   href: PropTypes.string,
   target: PropTypes.string,
+  style: PropTypes.object, // eslint-disable-line react/forbid-prop-types
 }
 
 AdButton.defaultProps = {
@@ -146,6 +150,7 @@ AdButton.defaultProps = {
   onClick: null,
   href: null,
   target: null,
+  style: null,
 }
 
 export default AdButton

@@ -1,0 +1,65 @@
+@import "~styles/themes";
+
+.Components {
+  padding-top: 120px;
+  max-width: 940px;
+  margin: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  .left {
+    flex: 0 0 250px;
+    position: relative;
+
+    .list {
+      z-index: 100;
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      padding-left: 20px;
+      overflow-y: auto;
+      // direction: rtl;
+      text-align: left;
+      position: fixed;
+      top: 130px;
+      bottom: 50px;
+
+      .subtitle {
+        &:not(:first-child) {
+          padding: 25px 0px 0px 0px;
+        }
+        @each $theme in $themes {
+          &.#{$theme} {
+            color: foregroundHue1($theme);
+          }
+        }
+      }
+
+      .item {
+        padding: 5px 0px;
+        padding-right: 20px;
+
+        .link {
+          outline: none;
+          font-size: 1.2em;
+          text-decoration: none;
+          @each $theme in $themes {
+            &.#{$theme} {
+              color: foregroundHue2($theme);
+
+              &:hover, &.active {
+                color: foreground($theme);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .main {
+    flex: 1 1 auto;
+    box-sizing: border-box;
+    padding-right: 20px;
+  }
+}
