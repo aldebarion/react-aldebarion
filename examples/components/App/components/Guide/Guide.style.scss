@@ -1,0 +1,52 @@
+@import "~styles/themes";
+
+.Guide {
+  padding-top: 120px;
+  max-width: 900px;
+  margin: auto;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  .left {
+    flex: 0 0 250px;
+
+    .list {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+
+      .subtitle {
+        padding: 25px 0px 0px 0px;
+        @each $theme in $themes {
+          &.#{$theme} {
+            color: foregroundHue1($theme);
+          }
+        }
+      }
+
+      .item {
+        padding: 5px 0px;
+
+        .link {
+          outline: none;
+          font-size: 1.2em;
+          text-decoration: none;
+          @each $theme in $themes {
+            &.#{$theme} {
+              color: foregroundHue2($theme);
+
+              &:hover, &.active {
+                color: foreground($theme);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .main {
+    flex: 1 1 auto;
+  }
+}

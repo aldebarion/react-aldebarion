@@ -1,0 +1,119 @@
+@import "~styles/themes/moon_light";
+@import "~styles/themes/frozen_winter";
+
+$foreground: (
+  "moon-light": $moon_light_foreground,
+  "frozen-winter": $frozen_winter_foreground
+);
+
+@function foreground($theme) {
+  @return map-get($foreground, $theme);
+}
+
+$foreground_hue1: (
+  "moon-light": $moon_light_foreground_hue1,
+  "frozen-winter": $frozen_winter_foreground_hue1
+);
+
+@function foregroundHue1($theme) {
+  @return map-get($foreground_hue1, $theme);
+}
+
+$foreground_hue2: (
+  "moon-light": $moon_light_foreground_hue2,
+  "frozen-winter": $frozen_winter_foreground_hue2
+);
+
+@function foregroundHue2($theme) {
+  @return map-get($foreground_hue2, $theme);
+}
+
+$background: (
+  "moon-light": $moon_light_background,
+  "frozen-winter": $frozen_winter_background
+);
+
+@function background($theme) {
+  @return map-get($background, $theme);
+}
+
+$defaultFontFamily: (
+  "moon-light": $moon_light_defaultFontFamily,
+  "frozen-winter": $moon_light_defaultFontFamily
+);
+
+@function defaultFontFamily($theme) {
+  @return map-get($defaultFontFamily, $theme);
+}
+
+$titleFontFamily: (
+  "moon-light": $moon_light_titleFontFamily,
+  "frozen-winter": $moon_light_titleFontFamily
+);
+
+@function titleFontFamily($theme) {
+  @return map-get($titleFontFamily, $theme);
+}
+
+$subtitleFontFamily: (
+  "moon-light": $moon_light_subtitleFontFamily,
+  "frozen-winter": $moon_light_subtitleFontFamily
+);
+
+@function subtitleFontFamily($theme) {
+  @return map-get($subtitleFontFamily, $theme);
+}
+
+$defaultFontWeight: (
+  "moon-light": $moon_light_defaultFontWeight,
+  "frozen-winter": $moon_light_defaultFontWeight
+);
+
+@function defaultFontWeight($theme) {
+  @return map-get($defaultFontWeight, $theme);
+}
+
+$boldFontWeight: (
+  "moon-light": $moon_light_boldFontWeight,
+  "frozen-winter": $moon_light_boldFontWeight
+);
+
+@function boldFontWeight($theme) {
+  @return map-get($boldFontWeight, $theme);
+}
+
+$titleFontWeight: (
+  "moon-light": $moon_light_titleFontWeight,
+  "frozen-winter": $moon_light_titleFontWeight
+);
+
+@function titleFontWeight($theme) {
+  @return map-get($titleFontWeight, $theme);
+}
+
+$subtitleFontWeight: (
+  "moon-light": $moon_light_subtitleFontWeight,
+  "frozen-winter": $moon_light_subtitleFontWeight
+);
+
+@function subtitleFontWeight($theme) {
+  @return map-get($subtitleFontWeight, $theme);
+}
+
+$defaultFontSize: (
+  "moon-light": $moon_light_defaultFontSize,
+  "frozen-winter": $moon_light_defaultFontSize
+);
+
+@function defaultFontSize($theme) {
+  @return map-get($defaultFontSize, $theme);
+}
+
+$themes: [
+  'moon-light',
+  'frozen-winter'
+];
+
+$borderWidth: 1px;
+$height: 42px;
+$horizontalPadding: 12px;

@@ -1,0 +1,21 @@
+@import "~styles/themes";
+@import "~styles/transitions";
+
+.AdIndicator {
+  position: relative;
+  overflow: hidden;
+  .container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    @include interactionTransition;
+
+    .icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}

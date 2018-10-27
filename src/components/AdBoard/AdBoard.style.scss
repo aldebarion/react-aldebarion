@@ -1,29 +1,53 @@
-@import "../../style/index";
+@import "~styles/themes";
+@import "~styles/transitions";
 
+.AdBoard {
+  -webkit-font-smoothing: antialiased!important;
+  -moz-osx-font-smoothing: grayscale!important;
 
-.adBoard {
-  display: flex;
-  flex-direction: column;
-  margin: 5px;
-  padding: 5px;
+  @each $theme in $themes {
+    &.#{$theme} {
+      background: background($theme);
+      color: foreground($theme);
+      font-size:  defaultFontSize($theme);
+      font-family: defaultFontFamily($theme);
+      font-weight: defaultFontWeight($theme);
 
-  border-left: 1px solid $foreground_hue1;
-  border-right: 1px solid $foreground_hue1;
+      h1 {
+        text-transform: uppercase;
+        padding: 0;
+        margin: 0;
+        font-weight: titleFontWeight($theme);
+        font-family: titleFontFamily($theme);
+      }
 
-  // .header {
-  //   flex: 0 0 auto;
-  // }
-  //
-  // .footer {
-  //   flex: 0 0 auto;
-  // }
+      h2 {
+        // text-transform: uppercase;
+        padding: 0;
+        margin: 0;
+        font-weight: subtitleFontWeight($theme);
+        font-family: subtitleFontFamily($theme);
+      }
 
-  // .content {
-  //   flex: 1 1 auto;
-  // }
-  //
-  // .separator2 {
-  //   margin-top: 5px;
-  //}
+      blockquote {
+        border-left: 4px solid foregroundHue2($theme);
+        color: foregroundHue2($theme);
+        padding-left: 15px;
+        margin: 12px 0;
+      }
 
+      strong {
+        color: foreground($theme);
+        font-weight: 400;
+      }
+
+      a {
+        color: inherit;
+        @include interactionTransition;
+        &:hover {
+          color: foreground($theme);
+        }
+      }
+    }
+  }
 }

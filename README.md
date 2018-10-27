@@ -11,7 +11,7 @@
 This framework helps you to:
 
 * design interfaces for futuristic smart screens, touch tables and HUDs.
-* implement user interfaces for long life application and productivity based on maximum ergonomy and timeless design
+* implement user interfaces for long term application and productivity based on maximum ergonomy and timeless design
 * increase efficiency with adaptive interfaces based on human experience
 
 It is very adapted to implement interfaces for your control table, HUDS, dashboards, etc.
@@ -21,16 +21,40 @@ It is very adapted to implement interfaces for your control table, HUDS, dashboa
 
 ### Installation
 ```bash
+# with npm
 $ npm install react-aldebarion
+# with yarn
+$ yarn react-aldebarion
 ```
 
 ### Development
 
 ```bash
+# with npm
 $ npm start
+# with yarn
+$ yarn start
 ```
 
 ## Guidelines
+
+### Minimalism
+
+* kind of scandinavian refined style
+* limit of austere
+* clean
+* straight
+
+
+
+Focus on what is important
+
+### Consistency
+
+* consistency over time, applications and devices
+*
+
+
 
 ### Efficiency
 
@@ -53,3 +77,15 @@ $ npm start
 ### Adaptation to user
 
 * make interface adaptable/adaptive to user
+
+
+## Inspirations
+
+* https://digitalsynopsis.com/design/cinema-palettes-famous-movie-colors/
+
+
+
+## Libraries
+
+* https://www.grafikart.fr/formations/webpack/react-hot-reload
+* https://ezgif.com/speed/ezgif-1-a119d227cd72.gif

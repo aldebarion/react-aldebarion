@@ -1,0 +1,17 @@
+$apparitionDuration: 400ms;
+$interactionDuration: 200ms;
+
+
+@mixin apparitionTransition {
+  -webkit-transition: all $apparitionDuration ease-out;
+  transition: all $apparitionDuration ease-out;
+}
+
+@mixin interactionTransition {
+  -webkit-transition: all $interactionDuration ease-out;
+  transition: all $interactionDuration ease-out;
+}
+
+@mixin delayInteractionTransition {
+  transition-delay: $interactionDuration;
+}

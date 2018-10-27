@@ -1,0 +1,44 @@
+/**
+ * Moon light is a dark theme
+ */
+
+/* colors */
+$moon_light_foreground: white;
+$moon_light_foreground_hue1: #434143; //rgba(255, 255, 255, 0.2); // darken(white, 30%);
+$moon_light_foreground_hue2: #757575;
+$moon_light_foreground_hue3: #828282;
+
+$moon_light_background: #100f11;
+
+$moon_light_border: #2d3f41;
+// $border2: #55686c;
+
+@import url('https://cdn.jsdelivr.net/themify-icons/0.1.2/css/themify-icons.css');
+
+/*
+* ARMATA
+* REEM KUFI
+*
+ */
+
+// https://fonts.google.com/?category=Sans+Serif,Display&selection.family=Expletus+Sans|Open+Sans|Raleway:400,500,600
+// Julius Sans One
+
+// @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400|Raleway:300,400');
+// @import url('https://fonts.googleapis.com/css?family=Raleway|Reem+Kufi');
+
+// @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400');
+
+$moon_light_defaultFontFamily: 'Jost', sans-serif;
+// $moon_light_defaultFontFamily: 'Open Sans', sans-serif;
+
+$moon_light_defaultFontWeight: 300;
+$moon_light_defaultFontSize: 1.2em;
+
+$moon_light_boldFontWeight: 400;
+
+$moon_light_titleFontFamily: 'Jost', sans-serif;
+$moon_light_titleFontWeight: 500;
+
+$moon_light_subtitleFontFamily: 'Jost', sans-serif;
+$moon_light_subtitleFontWeight: 400;

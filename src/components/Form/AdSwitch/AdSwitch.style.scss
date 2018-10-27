@@ -1,0 +1,131 @@
+@import "~styles/themes";
+@import "~styles/transitions";
+@import "~styles/interactions";
+
+.AdSwitch {
+  display: inline-block;
+  // display: inline-flex;
+  // align-items: stretch;
+  // justify-content: flex-start;
+  box-sizing: border-box;
+  overflow: hidden;
+  cursor: pointer;
+  // padding: 0px 10px;
+
+  position: relative;
+
+  @include apparitionTransition;
+  opacity: 1;
+
+  @each $theme in $themes {
+    &.#{$theme} {
+      &:not(.disabled) {
+        border: $borderWidth solid foreground($theme);
+      }
+
+      &.disabled {
+        border: $borderWidth solid foregroundHue1($theme);
+      }
+    }
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+  }
+
+  // width: 0px;
+  // height: 0px;
+
+  // &.showHeight {
+    height: $height;
+  // }
+
+  // &.showWidth {
+  //   width: $width;
+  // }
+
+  .choice {
+    border: none;
+    outline: none;
+    background: transparent;
+    text-transform: uppercase;
+    box-sizing: border-box;
+    padding: 0px 0px 0px 10px;
+    @include noSelect;
+    font-size: 0.9em;
+    height: 100%;
+    position: relative;
+
+    flex: 1 0 50%;
+
+    z-index: 10;
+    @include interactionTransition;
+    white-space: nowrap;
+    overflow: hidden;
+
+    &:first-child {
+      padding-left: 10px;
+    }
+
+    &:last-child {
+      padding-right: 10px;
+    }
+
+    &:not(:last-child) {
+      margin-right: 15px;
+    }
+
+    @each $theme in $themes {
+      &.#{$theme} {
+        &:not(.active) {
+          &:not(:disabled) {
+            color: foreground($theme);
+          }
+          &:disabled {
+            color: foregroundHue1($theme);
+          }
+        }
+
+        &.active {
+          color: background($theme);
+        }
+      }
+    }
+
+    &:not(:disabled) {
+      cursor: pointer;
+    }
+  }
+
+  .banner {
+    position: absolute;
+    width: 70%;
+    height: 100px;
+    bottom: 0;
+    right: 50%;
+    transform: rotate(-10deg);
+    transform-origin: bottom right;
+    z-index: 5;
+    @include interactionTransition;
+    margin-right: -2px;
+
+
+    @each $theme in $themes {
+      &.#{$theme} {
+        &:not(.disabled) {
+          background: foreground($theme);
+        }
+
+        &.disabled {
+          background: foregroundHue1($theme);
+        }
+      }
+    }
+
+    &.right {
+      right: -20%;
+      margin-right: -8px;
+    }
+  }
+
+}

@@ -1,0 +1,141 @@
+@import "~styles/themes";
+@import "~styles/transitions";
+@import "~styles/interactions";
+
+.AdRadio {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  $margin: 20px;
+
+  &.inline {
+    flex-direction: row;
+
+    .choice {
+      margin-left: $margin;
+
+      &:first-child {
+        margin-left: 0px;
+      }
+    }
+  }
+
+  &.block {
+    flex-direction: column;
+    align-items: flex-start;
+
+    .choice {
+      margin-bottom: $margin / 2;
+    }
+  }
+
+  .choice {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    &:not(.disabled) {
+      cursor: pointer;
+    }
+
+    .radio {
+      background: transparent;
+      outline: none;
+
+      &:not(:disabled) {
+        cursor: pointer;
+      }
+      margin-right: 10px;
+      $width: 25px;
+      width: $width;
+      height: $width;
+      position: relative;
+      border: none;
+
+      // border-radius: 999em;
+      // overflow: hidden;
+
+      &:before {
+        display: block;
+        content: " ";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 999em;
+        box-sizing: border-box;
+        @include interactionTransition;
+      }
+
+      &:after {
+        display: block;
+        content: " ";
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        right: 3px;
+        bottom: 3px;
+        z-index: 5;
+        border-radius: 999em;
+        background: transparent;
+
+        @include interactionTransition;
+        @include delayInteractionTransition;
+      }
+
+
+      @each $theme in $themes {
+        &.#{$theme} {
+          &:not(:disabled):before {
+            border: 2px solid foreground($theme);
+          }
+
+          &:not(:disabled).active:after {
+            background: foreground($theme);
+          }
+
+          &:disabled:before {
+            border: 2px solid foregroundHue1($theme);
+          }
+
+          &.active:disabled:after {
+            background: foregroundHue1($theme);
+          }
+        }
+      }
+
+      &.active:before {
+        border-width: 12px!important;
+      }
+
+      .input {
+        overflow: hidden;
+        width: 0;
+        height: 0;
+      }
+    }
+
+    &:not(.disabled):hover {
+      .radio:not(.active):before {
+        border-width: 4px;
+      }
+    }
+
+    .label {
+      @include noSelect;
+      @each $theme in $themes {
+        &.#{$theme} {
+          &:not(.disabled) {
+            color: foreground($theme);
+          }
+
+          &.disabled {
+            color: foregroundHue1($theme);
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "moonLight": [
+    {
+      "label": "Background",
+      "color": "#100f11",
+      "foreground": "#ffffff"
+    },
+    {
+      "label": "Foreground",
+      "color": "#ffffff",
+      "foreground": "#100f11"
+    },
+    {
+      "label": "Foreground Hue1",
+      "color": "#434143",
+      "foreground": "#ffffff"
+    },
+    {
+      "label": "Foreground Hue2",
+      "color": "#757575",
+      "foreground": "#ffffff"
+    },
+    {
+      "label": "Foreground Hue3",
+      "color": "#828282",
+      "foreground": "#ffffff"
+    }
+  ],
+  "frozenWinter": [
+    {
+      "label": "Background",
+      "color": "#e6e1de",
+      "foreground": "#041c28"
+    },
+    {
+      "label": "Foreground",
+      "color": "#041c28",
+      "foreground": "#e6e1de"
+    },
+    {
+      "label": "Foreground Hue1",
+      "color": "#92afbf",
+      "foreground": "#041c28"
+    },
+    {
+      "label": "Foreground Hue2",
+      "color": "#4f8ba7",
+      "foreground": "#041c28"
+    },
+    {
+      "label": "Foreground Hue3",
+      "color": "#103e55",
+      "foreground": "#041c28"
+    }
+  ]
+}

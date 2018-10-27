@@ -1,147 +1,196 @@
-@import "../../../style/index";
+@import "~styles/themes";
+@import "~styles/transitions";
 
-.adInput {
+.AdInput {
 
-  box-sizing: border-box;
-  background-color: transparent;
-  overflow: hidden;
-  display: inline-flex;
+  display: flex;
   align-items: stretch;
-  justify-content: left;
-  position: relative;
-  z-index: z('button');
+  justify-content: flex-start;
+  box-sizing: border-box;
+  overflow: hidden;
 
-  &.fluid {
-    display: block;
-    width: 100%;
-  }
+  @include apparitionTransition;
+  opacity: 1;
 
-  &.normalSize {
-    border: $borderNormalWidth solid $foreground;
-    margin-bottom: $formNormalMargin;
-    height: $widgetNormalHeight;
-    $inputWidth: 350px;
-    width: $inputWidth;
+  $width: 300px;
 
 
-    &:not(.fluid) {
-      margin-right: $formNormalMargin;
+  @each $theme in $themes {
+    &.#{$theme} {
+      &:not(.disabled) {
+        border: $borderWidth solid foreground($theme);
+      }
+
+      &.disabled {
+        border: $borderWidth solid foregroundHue1($theme);
+      }
     }
   }
 
-  .adInputContent {
-    flex: 1 1 auto;
-    height: 100%;
+  &.disabled {
+    cursor: not-allowed;
+  }
+
+  width: 0px;
+  height: 0px;
+
+  &.showHeight {
+    height: $height;
+  }
+
+  &.showWidth {
+    width: $width;
+  }
+
+  .minLeft {
+    flex: 0 0 $horizontalPadding;
+  }
+
+  .prefixLeft, .left {
     display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @each $theme in $themes {
+      &.#{$theme} {
+        // color: background($theme);
+        &:not(.disabled) {
+          color: foreground($theme);
+        }
+
+        &.disabled {
+          color: foregroundHue1($theme);
+        }
+
+      }
+    }
+  }
+
+  .prefixLeft {
+    flex: 0 0 auto;
+    padding: 0px 2px 0px $horizontalPadding;
+    font-size: 0.9em;
+  }
+
+  .left {
+    flex: 0 0 40px;
+
+    .icon {
+      color: inherit;
+      font-size: 20px;
+    }
+  }
+
+
+  .right {
+    box-sizing: content-box;
+    flex: 0 0 auto;
     position: relative;
-  }
 
-  .adInputSubContent {
-    flex: 1 1 auto;
-    display: flex;
-    flex-direction: column;
-    position: relative,
-  }
-
-  .adInputSubContentInput {
-    height: 100%;
-    flex: 1 1;
-    padding: 12px;
-    background: transparent;
     border: none;
     outline: none;
-    color: $foreground;
-    @include font;
-    display: inline-block;
-    font-size: 0.95em;
-    min-width: 0px;
-    // text-transform: uppercase;
+    padding: 0;
+    overflow: hidden;
 
-    &::placeholder, &::-webkit-input-placeholder, &::-moz-placeholder, &:-ms-input-placeholder, &:-moz-placeholder { /* Chrome/Opera/Safari */
-      color: blue; //$foreground_hue2;
-      text-transform: uppercase;
-    }
-  }
 
-  .adInputIcon {
-    // height: 100%;
+    &.button {
+      &:disabled {
+        cursor: not-allowed;
+      }
 
-    background: $foreground;
-    display: inline-block;
-    background-color: $foreground;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    i {
-      font-weight: 700;
-      color: $background;
-    }
-
-    &.normalSize {
-      $buttonWidth: 45px;
-      flex: 0 0 $buttonWidth;
-      width: $buttonWidth;
-    }
-  }
-
-  .adInputButton {
-    outline: none;
-    border: none;
-    background: $foreground;
-    display: inline-block;
-    background-color: $foreground;
-    opacity: 0;
-    $properties: opacity $defaultFunction $defaultDuration;
-    @include transition($properties);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    i {
-      font-weight: 700;
-      color: $background;
-      @include transition(color $defaultFunction $defaultDuration);
-    }
-
-    &.normalSize {
-      $buttonWidth: 45px;
-      flex: 0 0 $buttonWidth;
-      width: $buttonWidth;
-    }
-
-    &.adInputButtonShow {
-      opacity: 1;
-      cursor: pointer;
-    }
-  }
-
-  .adInputIndicator {
-    display: inline-block;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    @include transition(opacity $defaultFunction $defaultDuration);
-
-    i {
-      font-weight: 700;
-      color: $foreground;
-
-      &.rotating {
-        @include rotateInfinite();
+      &:not(.submitted):not(:disabled) {
+        cursor: pointer;
       }
     }
 
-    &.adInputIndicatorShow {
+    opacity: 0;
+    @include apparitionTransition;
+
+    &.show {
       opacity: 1;
     }
 
+    @each $theme in $themes {
+      &.#{$theme} {
+        @include interactionTransition;
+        background: transparent;
 
+        $disabledColor: foregroundHue1($theme);
+        $defaultColor: foreground($theme);
 
-    &.normalSize {
-      $buttonWidth: 45px;
-      flex: 0 0 $buttonWidth;
-      width: $buttonWidth;
+        &.disabled, &:disabled {
+          color: $disabledColor;
+        }
+
+        &:not(.disabled):not(.button) {
+          color: $defaultColor;
+        }
+
+        &.button {
+          &:disabled {
+            border-left: $borderWidth solid $disabledColor;
+          }
+
+          &:not(:disabled) {
+            border-left: $borderWidth solid $defaultColor;
+            &:not(:hover) {
+              color: $defaultColor;
+            }
+
+            &:hover, &.submitted {
+              background: $defaultColor;
+              color: background($theme);
+            }
+          }
+        }
+      }
+    }
+
+    .indicator {
+      $rightWidth: $height - 2 * $borderWidth;
+      width: $rightWidth;
+      color: inherit;
+      font-size: 20px;
+      height: $rightWidth;
     }
   }
 
+  .input {
+    background: transparent;
+    outline: none;
+    border: none;
+    padding: 9px $horizontalPadding 9px 0px;
+
+    display: block;
+    width: 100%;
+    flex: 1 1 auto;
+    font-size: 0.9em;
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+
+    @each $theme in $themes {
+      &.#{$theme} {
+        &:not(:disabled) {
+          color: foreground($theme);
+        }
+        &:disabled {
+          color: foregroundHue1($theme);
+        }
+
+        font-family: defaultFontFamily($theme);
+        -webkit-font-smoothing: antialiased!important;
+        -moz-osx-font-smoothing: grayscale!important;
+        font-weight: defaultFontWeight($theme);
+      }
+    }
+
+    opacity: 0;
+    @include apparitionTransition;
+
+    &.showInput {
+      opacity: 1;
+    }
+  }
 }

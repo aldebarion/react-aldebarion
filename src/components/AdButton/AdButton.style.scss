@@ -1,0 +1,164 @@
+@import "~styles/themes";
+@import "~styles/transitions";
+
+.AdButton {
+  display: inline-flex;
+  vertical-align: middle;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  overflow: hidden;
+
+  background: transparent;
+  padding: 0px 8px;
+  outline: none;
+  border: 1px solid transparent;
+  font-size: 0.9em;
+  text-transform: uppercase;
+
+  text-decoration: none;
+
+  position: relative;
+
+  @include interactionTransition;
+
+  .content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    overflow: hidden;
+    padding: 9px 8px;
+  }
+
+  &:not(:disabled):not(.disabled):not(.loading) {
+    cursor: pointer;
+
+    &.classic {
+      &:before, &:after {
+        @include interactionTransition;
+        display: block;
+        content: " ";
+        position: absolute;
+        z-index: 5;
+      }
+
+      &:before {
+        top: 0;
+        bottom: 0;
+        width: 100%;
+        right: 100%;
+        margin-right: 20px;
+      }
+
+      &:after {
+        width: 100px;
+        height: 200%;
+        transform: rotate(-10deg);
+        transform-origin: bottom right;
+        right: 100%;
+        bottom: 0;
+        margin-right: 0px;
+      }
+    }
+  }
+
+  &:disabled, &.disabled {
+    cursor: not-allowed;
+  }
+
+  &.icon {
+    font-size: 1.2em;
+  }
+
+  @each $theme in $themes {
+    &.#{$theme} {
+      &:not(:disabled):not(.disabled) {
+
+        &.classic {
+          &:before, &:after {
+            background: foreground($theme);
+          }
+
+          border: $borderWidth solid foreground($theme);
+          color: foreground($theme);
+
+          &:hover:not(.loading) {
+            color: background($theme);
+
+            &:before {
+              margin-right: 0px;
+              right: 0%;
+            }
+
+            &:after {
+              margin-right: -20px;
+              right: -20%;
+            }
+          }
+        }
+
+        &.icon {
+          color: foregroundHue2($theme);
+          &:hover {
+            color: foreground($theme);
+          }
+        }
+
+
+      }
+
+      &:disabled, &.disabled {
+        &.classic {
+          border: $borderWidth solid foregroundHue1($theme);
+        }
+        color: foregroundHue1($theme);
+      }
+    }
+  }
+
+  // width: 0px;
+  // height: 0px;
+  //
+  // &.showHeight {
+    height: $height;
+  // }
+
+  // &.showWidth {
+  //   width: $width;
+  // }
+  .icon {
+    z-index: 10;
+    font-size: 0.9em;
+    &.rightMargin {
+      margin-right: 10px;
+    }
+
+    &.leftMargin {
+      margin-left: 10px;
+    }
+  }
+
+  .label {
+    z-index: 10;
+  }
+
+  .loading {
+    @include interactionTransition;
+    width: 35px;
+    overflow: hidden;
+
+    &.hidden {
+      width: 0px;
+    }
+    .loader {
+      $width: 35px;
+      width: $width;
+      height: $width;
+    }
+  }
+
+  & + & {
+    margin-left: 10px;
+  }
+}

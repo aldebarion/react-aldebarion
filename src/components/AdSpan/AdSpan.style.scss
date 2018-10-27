@@ -1,0 +1,33 @@
+@import "~styles/themes";
+
+.AdSpan {
+  @each $theme in $themes {
+    &.#{$theme} {
+      // @include defaultFont($theme);
+      font-family: map-get($defaultFontFamily, $theme);
+      -webkit-font-smoothing: antialiased!important;
+      -moz-osx-font-smoothing: grayscale!important;
+      font-weight: map-get($defaultFontWeight, $theme);
+
+      &:not(.discreet) {
+        color: map-get($foreground, $theme);
+      }
+
+      &.discreet {
+        color: map-get($foreground_hue1, $theme);
+      }
+
+      a {
+        text-decoration: none;
+        color: map-get($foreground_hue1, $theme);
+
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+
+}

@@ -1,9 +1,16 @@
-@import "../../style/index";
+.AdLoader  {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
 
-
-.adLoader {
-  background: url('./loader.gif');
-  background-position: center center;
-  background-size: contain;
-  background-repeat: no-repeat;
+  $defaultWidth: 100px;
+  height: $defaultWidth;
+  width: $defaultWidth;
+  .loader {
+    width: 100%;
+    // position: absolute;
+    // width: 250%;
+  }
 }

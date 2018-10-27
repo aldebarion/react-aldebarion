@@ -1,0 +1,62 @@
+// @font-face {
+//   font-family: 'Renner';
+//   src: url('styles/fonts/ttf/Renner 100 Hairline.ttf') format('truetype'),
+//   url('styles/fonts/otf/Renner 100 Hairline.otf') format('truetype');
+//   font-weight: 100;
+//   font-style: normal;
+// }
+//
+// @font-face {
+//   font-family: 'Renner';
+//   src: url('styles/fonts/ttf/Renner 200 Thin.ttf') format('truetype'),
+//   url('styles/fonts/otf/Renner 200 Thin.otf') format('truetype');
+//   font-weight: 200;
+//   font-style: normal;
+// }
+
+@font-face {
+  font-family: 'Jost';
+  src: url('styles/fonts/jost/ttf/Jost-300-Light.ttf') format('truetype'),
+  url('styles/fonts/jost/otf/Jost-300-Light.otf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Jost';
+  src: url('styles/fonts/jost/ttf/Jost-400-Book.ttf') format('truetype'),
+  url('styles/fonts/jost/otf/Jost-400-Book.otf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Jost';
+  src: url('styles/fonts/jost/ttf/Jost-500-Medium.ttf') format('truetype'),
+  url('styles/fonts/jost/otf/Jost-500-Medium.otf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+:global {
+  .discreet {
+    color: foregroundHue1()
+  }
+}
+
+//
+// @font-face {
+//   font-family: 'Renner';
+//   src: url('styles/fonts/ttf/Renner 400 Book.ttf') format('truetype'),
+//   url('styles/fonts/otf/Renner 400 Book.otf') format('truetype');
+//   font-weight: 400;
+//   font-style: normal;
+// }
+//
+// @font-face {
+//   font-family: 'Renner';
+//   src: url('styles/fonts/ttf/Renner 500 Medium.ttf') format('truetype'),
+//   url('styles/fonts/otf/Renner 500 Medium.otf') format('truetype');
+//   font-weight: 500;
+//   font-style: normal;
+// }

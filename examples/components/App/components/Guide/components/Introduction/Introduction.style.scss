@@ -1,0 +1,25 @@
+@import "~styles/themes";
+
+.page {
+  font-size: 1.1em;
+
+  @each $theme in $themes {
+    &.#{$theme} {
+      color: foreground($theme)!important;
+    }
+  }
+
+  p {
+    @each $theme in $themes {
+      &.#{$theme} {
+        color: foreground($theme)!important;
+      }
+    }
+  }
+}
+
+.img {
+  display: block;
+  width: 100%;
+  margin: 50px 0px;
+}

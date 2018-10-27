@@ -1,17 +1,25 @@
 import React from 'react'
-import { render } from 'react-dom'
-// import { Provider } from 'react-redux'
+import ReactDOM from 'react-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
+import { AppContainer } from 'react-hot-loader'
 
-import 'isomorphic-fetch'
+import 'react-aldebarion'
 
-/* eslint import/no-extraneous-dependencies: 0 import/no-unresolved: 0 */
-import './global.scss'
-
+import './index.style'
 import App from './components/App'
 
-/* eslint-env browser */
+const renderApp = () => {
+  ReactDOM.render(
+    <AppContainer>
+      <Router basename={ROOT_PATH}>
+        <App />
+      </Router>
+    </AppContainer>,
+    document.getElementById('root'),
+  )
+}
 
-render(
-  <App />
-  , document.getElementById('index')
-)
+if (module.hot) {
+  module.hot.accept('./components/App', renderApp)
+}
+renderApp()

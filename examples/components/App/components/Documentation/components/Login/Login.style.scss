@@ -1,0 +1,112 @@
+
+.Login {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  .form {
+    position: relative;
+
+    .face {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 500ms ease-out;
+      position: relative;
+
+      &.front {
+        transform-origin: center center 21px;
+
+        &[data-rotated="0"] {
+          z-index: 10;
+        }
+
+        &[data-rotated="1"] {
+          transform: rotate3d(1, 0, 0, -90deg);
+          z-index: 5;
+          opacity: 0;
+        }
+
+        &[data-rotated="2"] {
+          transform: rotate3d(1, 0, 0, -180deg);
+          z-index: 5;
+          opacity: 0;
+        }
+      }
+
+      &.bottom {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+
+        transform: rotate3d(1, 0, 0, 90deg);
+        transform-origin: center center 21px;
+
+        &[data-rotated="0"] {
+          z-index: 5;
+        }
+
+        &[data-rotated="1"] {
+          transform: rotate3d(1, 0, 0, 0deg);
+          z-index: 10;
+        }
+
+        &[data-rotated="2"] {
+          transform: rotate3d(1, 0, 0, -90deg);
+          z-index: 5;
+        }
+      }
+
+      &.back {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+
+        transform: rotate3d(1, 0, 0, 180deg);
+        transform-origin: center center 21px;
+
+        &[data-rotated="0"] {
+          z-index: 5;
+          opacity: 0;
+        }
+
+        &[data-rotated="1"] {
+          transform: rotate3d(1, 0, 0, 90deg);
+          z-index: 5;
+          opacity: 0;
+        }
+
+        &[data-rotated="2"] {
+          transform: rotate3d(1, 0, 0, 0deg);
+          z-index: 10;
+        }
+      }
+    }
+  }
+
+  .help {
+    .container {
+      height: 0;
+      .content {
+        width: 100%;
+        padding-top: 10px;
+        text-align: center;
+        height: 50px;
+
+        .text {
+          font-size: 0.8em;
+        }
+      }
+    }
+  }
+
+}

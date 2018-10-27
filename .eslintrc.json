@@ -3,25 +3,22 @@
   "extends": ["airbnb"],
   "globals": {
     "fetch": false,
-    "firebase": false
+    "firebase": false,
+    "ROOT_PATH": true
   },
   "env": {
-    "shared-node-browser": true
+    "browser": true
   },
   "rules": {
     "semi": [2, "never"],
     "indent": ["error", 2],
-    "arrow-body-style": 0,
-    "import/no-named-as-default": 0,
-    "import/prefer-default-export": 0,
-    "import/no-unresolved": 0,
-    "import/extensions": ["off", "never"],
-    "import/no-extraneous-dependencies": 0,
-    "import/no-named-as-default-member":0,
-    "import/no-duplicates": 0,
-    "import/export": 0,
-    "react/forbid-prop-types": 0,
-    "jsx-a11y/no-static-element-interactions": "off",
-    "jsx-a11y/href-no-hash": "off"
+    "react/jsx-one-expression-per-line": "never"
+  },
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        "config": "webpack.config.examples.dev.js"
+      }
+    }
   }
 }

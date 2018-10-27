@@ -1,0 +1,21 @@
+@import "~styles/themes";
+
+.Example {
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
+  padding: 30px;
+  box-sizing: border-box;
+  min-height: 102px;
+
+
+  & + & {
+    padding-top: 10px;
+  }
+
+  @each $theme in $themes {
+    &.#{$theme} {
+      // border: 1px solid foregroundHue2($theme);
+    }
+  }
+}

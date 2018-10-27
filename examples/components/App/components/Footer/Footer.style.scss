@@ -1,0 +1,20 @@
+@import "~styles/themes";
+
+.Footer {
+  padding-top: 50px;
+  text-align: center;
+  padding-bottom: 50px;
+  .links {
+    padding-bottom: 10px;
+  }
+  .link {
+    display: inline-block;
+    margin-bottom: 5px;
+    font-size: 0.9em;
+    @each $theme in $themes {
+      &.#{$theme} {
+        color: foregroundHue1($theme);
+      }
+    }
+  }
+}

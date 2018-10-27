@@ -1,0 +1,28 @@
+@import "~styles/themes";
+
+.Section {
+  padding-top: 35px;
+
+  .title {
+    @each $theme in $themes {
+      &.#{$theme} {
+        color: foreground($theme);
+      }
+    }
+  }
+
+  .content {
+    padding-top: 15px;
+  }
+
+  .description {
+    padding: 15px 0 0 0;
+    margin: 0;
+
+    @each $theme in $themes {
+      &.#{$theme} {
+        color: foregroundHue2($theme);
+      }
+    }
+  }
+}

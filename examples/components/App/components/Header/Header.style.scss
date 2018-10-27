@@ -1,0 +1,54 @@
+@import "~styles/themes";
+@import "~styles/transitions";
+
+.Header {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+
+  @each $theme in $themes {
+    &.#{$theme} {
+      background: background($theme);
+    }
+  }
+
+  .left {
+    flex: 1 1 auto;
+  }
+
+  .right {
+    flex: 0 0 auto;
+  }
+
+  .title {
+    font-size: 1.5em;
+
+    .titleLink {
+      text-decoration: none;
+    }
+  }
+
+  .link {
+    font-size: 1.1em;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-left: 20px;
+    text-decoration: none;
+
+    @include interactionTransition;
+
+    @each $theme in $themes {
+      &.#{$theme} {
+        color: foregroundHue2($theme);
+        // font-weight: titleFontWeight($theme);
+
+        &.active {
+          color: foreground($theme);
+        }
+      }
+    }
+  }
+}

@@ -1,33 +1,41 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-
-import AdWidget from '../AdWidget'
-
-// import AdSeparator from '../AdSeparator'
+import ThemeContext, { defaultTheme } from 'contexts/Theme'
+import FluidityContext, { defaultFluidity } from 'contexts/Fluidity'
 
 import style from './AdBoard.style'
 
-class AdBoard extends AdWidget {
-  render() {
-    return (
-      <div className={`${this.loadClassNames(style)} ${style.adBoard}`} >
-        {this.props.children}
+const AdBoard = ({
+  className,
+  children,
+  theme,
+  fluidity,
+}) => (
+  <ThemeContext.Provider value={{ theme }}>
+    <FluidityContext.Provider value={{ fluidity }}>
+      <div className={`${style.AdBoard} ${style[theme]} ${className}`}>
+        {children}
       </div>
-    )
-  }
-}
+    </FluidityContext.Provider>
+  </ThemeContext.Provider>
+)
 
 AdBoard.propTypes = {
-  ...AdWidget.propTypes,
-  from: PropTypes.string,
-  to: PropTypes.string,
-  children: PropTypes.node.isRequired,
+  className: PropTypes.string,
+  children: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node),
+  ]),
+  theme: PropTypes.string,
+  fluidity: PropTypes.string,
 }
 
 AdBoard.defaultProps = {
-  ...AdWidget.defaultProps,
-  from: 'left',
-  to: 'right',
+  className: '',
+  children: [],
+  theme: defaultTheme,
+  fluidity: defaultFluidity,
 }
+
 
 export default AdBoard

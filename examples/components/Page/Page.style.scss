@@ -1,0 +1,29 @@
+@import "~styles/themes";
+
+.Page {
+  @each $theme in $themes {
+    &.#{$theme} {
+      color: foregroundHue2($theme);
+    }
+  }
+
+  .title {
+    font-size: 1.5em;
+  }
+
+  .title {
+    @each $theme in $themes {
+      &.#{$theme} {
+        color: foreground($theme);
+      }
+    }
+  }
+
+  .description {
+    @each $theme in $themes {
+      &.#{$theme} {
+        color: foreground($theme);
+      }
+    }
+  }
+}

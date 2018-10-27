@@ -1,0 +1,8 @@
+@import "~styles/themes";
+
+@mixin defaultFont($theme) {
+  font-family: map-get($defaultFontFamily, $theme);
+  -webkit-font-smoothing: antialiased!important;
+  -moz-osx-font-smoothing: grayscale!important;
+  font-weight: defaultFontWeight($theme);
+}

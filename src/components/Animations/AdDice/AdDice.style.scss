@@ -1,0 +1,38 @@
+@import "~styles/transitions";
+
+.AdDice {
+  width: 400px;
+  position: relative;
+
+  .face {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: all 500ms ease-out;
+
+    @for $faces from 1 through 4 {
+      &.count-#{$faces} {
+        $pitch: 360deg / $faces;
+        @for $i from 0 through ($faces - 1) {
+          &.face-#{$i} {
+            $defaultValue: $pitch * $i;
+            // transform: rotate3d(1, 0, 0, 1 * $defaultValue);
+
+            @for $j from 0 through 3 {
+              &.current-face-#{$j} {
+                transform: rotate3d(1, 0, 0, 1 * $defaultValue - $j * $pitch);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

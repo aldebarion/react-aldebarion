@@ -1,0 +1,46 @@
+@import "~styles/themes";
+
+.Palette {
+  max-width: 300px;
+  margin: auto;
+
+  // .title {
+  //   padding: 10px 0px;
+  //   font-size: 1.3em;
+  //   @each $theme in $themes {
+  //     &.#{$theme} {
+  //       color: foregroundHue2($theme);
+  //     }
+  //   }
+  // }
+
+  .container {
+    @each $theme in $themes {
+      &.#{$theme} {
+        border: 1px solid foreground($theme);
+      }
+    }
+
+    .item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+      @each $theme in $themes {
+        &.#{$theme} {
+          &:not(:last-child) {
+            border-bottom: 1px solid foreground($theme);
+          }
+        }
+      }
+
+      .label {
+        flex: 1 1 auto;
+      }
+
+      .color {
+        flex: 0 0 auto;
+      }
+    }
+  }
+}
