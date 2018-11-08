@@ -60,8 +60,6 @@ class AdSwitch extends Component {
 
   handleClick(value, index) {
     return () => {
-      console.log('onClick')
-
       this.setState({
         value,
         index,

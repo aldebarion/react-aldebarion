@@ -19,8 +19,6 @@ const renderApp = () => {
   )
 }
 
-console.log('render')
-
 if (module.hot) {
   module.hot.accept('./components/App', renderApp)
 }

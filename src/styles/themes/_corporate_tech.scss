@@ -1,0 +1,26 @@
+/**
+ * Frozen winter is a light theme
+ */
+
+/* colors */
+$corporate_tech_foreground: rgb(30, 135, 240);
+$corporate_tech_foreground_hue1: #cccccc;
+$corporate_tech_foreground_hue2: black;
+$corporate_tech_foreground_hue3: black;
+
+$corporate_tech_background: white;
+
+@import url('https://cdn.jsdelivr.net/themify-icons/0.1.2/css/themify-icons.css');
+
+$corporate_tech_defaultFontFamily: 'Jost', sans-serif;
+
+$corporate_tech_defaultFontWeight: 300;
+$corporate_tech_defaultFontSize: 1.2em;
+
+$corporate_tech_boldFontWeight: 400;
+
+$corporate_tech_titleFontFamily: 'Jost', sans-serif;
+$corporate_tech_titleFontWeight: 500;
+
+$corporate_tech_subtitleFontFamily: 'Jost', sans-serif;
+$corporate_tech_subtitleFontWeight: 400;

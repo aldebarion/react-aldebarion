@@ -22,15 +22,16 @@ class Login extends Component {
     this.state = {
       restart: 0,
       step: 0,
+      previousStep: -1,
       animationFinished: false,
       show: true,
     }
   }
 
   componentDidMount() {
-    if (this.inputEmail) {
-      this.inputEmail.focus()
-    }
+    // if (this.inputEmail) {
+    //   this.inputEmail.focus()
+    // }
   }
 
   handleEndAnimation() {
@@ -43,16 +44,18 @@ class Login extends Component {
     const { step } = this.state
     this.setState({
       step: step + 1,
+      previousStep: step,
     })
-    if (this.inputPassword) {
-      this.inputPassword.focus()
-    }
+    // if (this.inputPassword) {
+    //   this.inputPassword.focus()
+    // }
   }
 
   handleSubmitPassword() {
     const { step } = this.state
     this.setState({
       step: step + 1,
+      previousStep: step,
     })
   }
 
@@ -60,6 +63,7 @@ class Login extends Component {
     const { step } = this.state
     this.setState({
       step: step - 1,
+      previousStep: step,
     })
     event.stopPropagation()
     event.preventDefault()
@@ -85,6 +89,7 @@ class Login extends Component {
     const { className } = this.props
     const {
       step,
+      previousStep,
       animationFinished,
       show,
       restart,
@@ -113,6 +118,8 @@ class Login extends Component {
                       ref={(e) => { this.inputEmail = e }}
                       onAnimationFinished={this.handleEndAnimation}
                       showSubmit
+                      focus={step === 0}
+                      submitted={step > previousStep}
                     />
                     <AdInput
                       type="password"
@@ -122,6 +129,8 @@ class Login extends Component {
                       onSubmit={this.handleSubmitPassword}
                       ref={(e) => { this.inputPassword = e }}
                       showSubmit
+                      focus={step === 1}
+                      submitted={step > previousStep}
                     />
                     <AdSpan>Welcome!</AdSpan>
                   </AdDice>

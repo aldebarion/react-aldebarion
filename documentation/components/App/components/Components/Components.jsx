@@ -22,6 +22,8 @@ import Color from './components/Color'
 import Switch2 from './components/Switch'
 import QuickStart from './components/QuickStart'
 import Dice from './components/Dice'
+import Gallery from './components/Gallery'
+import TypeWriter from './components/TypeWriter'
 import Slider from './components/Slider'
 
 const routes = [
@@ -88,6 +90,11 @@ const routes = [
         label: 'Input',
         component: Input,
       },
+      {
+        route: '/components/slider',
+        label: 'Slider',
+        component: Slider,
+      },
     ],
   },
   {
@@ -99,9 +106,14 @@ const routes = [
         component: Dice,
       },
       {
-        route: '/components/slider',
-        label: 'Slider',
-        component: Slider,
+        route: '/components/gallery',
+        label: 'Gallery',
+        component: Gallery,
+      },
+      {
+        route: '/components/type-writer',
+        label: 'TypeWriter',
+        component: TypeWriter,
       },
     ],
   },
@@ -111,7 +123,7 @@ let totalIndex = 0
 
 routes.forEach((route, index) => {
   routes[index].index = 1 + totalIndex
-  totalIndex = 1 + routes[index].routes.length
+  totalIndex = totalIndex + 1 + route.routes.length
 })
 
 export default class Components extends Component {
@@ -130,7 +142,10 @@ export default class Components extends Component {
                           <li className={`${style.subtitle} ${style[theme]}`}>{section.title}</li>
                         </AnimatedItem>
                         {section.routes.map((route, index) => (
-                          <AnimatedItem key={route.route} animationIndex={section.index + index}>
+                          <AnimatedItem
+                            key={route.route}
+                            animationIndex={section.index + index + 1}
+                          >
                             <li className={style.item}>
                               <NavLink className={`${style.link} ${style[theme]}`} activeClassName={style.active} to={route.route}>{route.label}</NavLink>
                             </li>

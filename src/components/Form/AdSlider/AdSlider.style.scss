@@ -1,0 +1,264 @@
+@import "~styles/themes";
+@import "~styles/transitions";
+@import "~styles/interactions";
+
+.AdSlider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  $cursorHeight: 18px;
+  $cursorActiveHeight: 22px;
+  $stepHeight: 4px;
+  $barHeight: 3px;
+
+  .label {
+    border: none;
+    outline: none;
+    background: transparent;
+    $width: 50px;
+    flex: 0 0 $width;
+    font-size: 0.9em;
+    $margin: 10px;
+    @include interactionTransition;
+
+    &:first-child {
+      text-align: left;
+      margin-right: $margin;
+    }
+
+    &:last-child {
+      margin-left: $margin;
+      text-align: right;
+    }
+
+    &:not(:disabled) {
+      cursor: pointer;
+    }
+
+    @each $theme in $themes {
+      &.#{$theme} {
+        color: foregroundHue2($theme);
+
+        &:not(:disabled) {
+          &:hover {
+            color: foreground($theme);
+          }
+        }
+      }
+    }
+  }
+
+  .slider {
+    flex: 1 1 auto;
+    position: relative;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0px $cursorActiveHeight / 2;
+  }
+
+  .bar {
+    display: block;
+    outline: none;
+    border: none;
+    padding: 0;
+    position: relative;
+
+    &:not(:disabled) {
+      cursor: pointer;
+    }
+
+    @each $theme in $themes {
+      &.#{$theme} {
+        height: $barHeight;
+        width: 100%;
+        background: foregroundHue1($theme);
+
+        // &:not(.disabled) {
+        // }
+        //
+        // &.disabled {
+        //   border: $borderWidth solid foregroundHue1($theme);
+        // }
+      }
+    }
+
+    .content {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+
+      &.animated {
+        @include interactionTransition;
+      }
+
+      @each $theme in $themes {
+        &.#{$theme} {
+
+          &.disabled {
+            background: foregroundHue2($theme);
+          }
+
+          &:not(.disabled) {
+            background: foreground($theme);
+          }
+        }
+      }
+    }
+  }
+
+  .stepContainer {
+    position: absolute;
+    top: 50%;
+
+    height: 0;
+    width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .step {
+      display: block;
+      padding: 0;
+      border: none;
+      outline: none;
+      position: relative;
+      box-sizing: border-box;
+      flex: 0 0 $stepHeight;
+      width: $stepHeight;
+      height: $stepHeight;
+      // transform: rotate(45deg);
+      // left: - $stepHeight / 2;
+      // transform-origin: center center;
+
+      @include interactionTransition;
+
+      &:disabled {
+        cursor: not-allowed;
+      }
+
+      &:not(:disabled) {
+        cursor: pointer;
+      }
+
+      @each $theme in $themes {
+        &.#{$theme} {
+          background: background($theme);
+          // background: foregroundHue1($theme);
+
+          &:hover, &.active {
+            // background: foreground($theme);
+          }
+        }
+      }
+    }
+
+    .currentLabel {
+      background: transparent;
+      border: none;
+      outline: none;
+      @include interactionTransition;
+      position: absolute;
+      bottom: 0;
+      margin-bottom: 12px;
+      font-size: .8em;
+      cursor: pointer;
+      @include noSelect;
+
+      @each $theme in $themes {
+        &.#{$theme} {
+          &:not(.disabled) {
+            color: foregroundHue1($theme);
+
+            &.active, &:hover {
+              color: foreground($theme);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .cursorContainer {
+    position: absolute;
+    top: 50%;
+
+    height: 0;
+    width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &.animated {
+      @include interactionTransition;
+    }
+  }
+
+  .cursor {
+    outline: none;
+    position: relative;
+    top: 1px;
+    box-sizing: border-box;
+    flex: 0 0 $cursorHeight;
+    width: $cursorHeight;
+    height: $cursorHeight;
+
+    @include interactionTransition;
+
+    &.disabled {
+      cursor: not-allowed;
+    }
+
+    &:not(.disabled) {
+      cursor: grab;
+      &:active {
+        cursor: grabbing;
+      }
+    }
+
+    @each $theme in $themes {
+      &.#{$theme} {
+        background: background($theme);
+        &:not(.disabled) {
+          border: 3px solid foreground($theme);
+          background: foreground($theme);
+
+          &:hover, &:active {
+            height: $cursorActiveHeight;
+            flex: 0 0 $cursorActiveHeight;
+            width: $cursorActiveHeight;
+          }
+
+            // &:active {
+            //   background: foreground($theme);
+            // }
+        }
+
+        &.disabled {
+          background: foregroundHue2($theme);
+          border: 3px solid foregroundHue2($theme);
+        }
+      }
+    }
+  }
+
+  .tooltip {
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 12px;
+    font-size: .8em;
+
+    @include noSelect;
+
+    @each $theme in $themes {
+      &.#{$theme} {
+        background: background($theme);
+        &:not(.disabled) {
+          color: foreground($theme);
+        }
+      }
+    }
+  }
+}

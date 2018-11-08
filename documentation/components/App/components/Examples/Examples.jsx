@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import {
-  AdSlider,
+  AdGallery,
   AdButton,
   contexts,
   AdSpan,
@@ -67,7 +67,7 @@ export default class Examples extends Component {
                   </div>
                 )
               }
-              <AdSlider className={style.slider} index={currentExample}>
+              <AdGallery className={style.slider} index={currentExample}>
                 <div className={style.slide}>
                   <Login className={style.content} />
                 </div>
@@ -81,7 +81,7 @@ export default class Examples extends Component {
                     </p>
                   </AdSpan>
                 </div>
-              </AdSlider>
+              </AdGallery>
             </div>
           </div>
         )}

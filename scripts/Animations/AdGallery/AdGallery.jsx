@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import style from './AdSlider.style'
+import style from './AdGallery.style'
 
-class AdSlider extends Component {
+class AdGallery extends Component {
   constructor(props) {
     super(props)
 
@@ -47,7 +47,7 @@ class AdSlider extends Component {
     } = this.state
 
     return (
-      <div className={`${style.AdSlider} ${className}`}>
+      <div className={`${style.AdGallery} ${className}`}>
         <div className={`${style.viewBox} ${viewBoxClassName}`}>
           <div className={style.list} style={{ width: `${100 * children.length}%`, transform: `translateX(${-100 / children.length * index}%)` }}>
             {React.Children.map(children, (child, currentIndex) => (
@@ -64,7 +64,7 @@ class AdSlider extends Component {
   }
 }
 
-AdSlider.propTypes = {
+AdGallery.propTypes = {
   className: PropTypes.string,
   index: PropTypes.number,
   children: PropTypes.oneOfType([
@@ -75,7 +75,7 @@ AdSlider.propTypes = {
   currentSlideClassName: PropTypes.string,
 }
 
-AdSlider.defaultProps = {
+AdGallery.defaultProps = {
   className: '',
   index: 0,
   children: ['index 1', 'index 2', 'index3', 'index 4'],
@@ -83,4 +83,4 @@ AdSlider.defaultProps = {
   currentSlideClassName: '',
 }
 
-export default AdSlider
+export default AdGallery

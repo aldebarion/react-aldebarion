@@ -5,7 +5,7 @@ import ThemeContext from 'contexts/Theme'
 import AdIcon from 'components/AdIcon'
 import AdIndicator from 'components/AdIndicator'
 
-import { isFluidAsChange, isFluidAsHover } from 'utils/fluidity'
+import { evaluateValidation } from 'utils/validation'
 
 import style from './AdInput.style'
 
@@ -15,15 +15,15 @@ class AdInput extends Component {
 
     this.handleChange = this.handleChange.bind(this)
     this.handleKeyDown = this.handleKeyDown.bind(this)
-    this.handleMouseEnter = this.handleMouseEnter.bind(this)
-    this.submit = this.submit.bind(this)
+    this.handleFocus = this.handleFocus.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
 
-    const { animated, defaultValue } = this.props
+    const { animated, defaultValue, value } = this.props
 
     this.maxShow = 5
 
     this.state = {
-      value: defaultValue,
+      value: value || defaultValue,
       show: animated ? 0 : this.maxShow,
       valid: false,
       submitted: false,
@@ -31,16 +31,15 @@ class AdInput extends Component {
   }
 
   componentDidMount() {
-    const { defaultValue } = this.props
-    this.evaluateValidator(defaultValue, (valid) => {
-      this.setState({
-        valid,
-      })
-    })
+    this.validate()
     this.intervalShow = setInterval(() => {
       let { show } = this.state
       show += 1
       if (show >= this.maxShow) {
+        const { focus } = this.props
+        if (focus) {
+          this.focus()
+        }
         const { onAnimationFinished } = this.props
         if (onAnimationFinished) {
           onAnimationFinished()
@@ -53,12 +52,32 @@ class AdInput extends Component {
       }
     }, 400)
     if (this.input) {
-      this.focusListener = this.input.addEventListener('focus', () => {
-        const { value } = this.state
-        if (value !== null && value === defaultValue) {
-          // this.input.setSelectionRange(0, value.length)
-        }
-      })
+      this.focusListener = this.input.addEventListener('focus', this.handleFocus)
+    }
+
+    const { focus } = this.props
+    if (focus) {
+      this.focus()
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    const {
+      validate,
+      type,
+      focus,
+      submitted,
+    } = this.props
+    if (validate !== prevProps.validate || type !== prevProps.type) {
+      this.validate()
+    }
+
+    if (focus && focus !== prevProps.focus) {
+      this.focus()
+    }
+
+    if (!submitted && submitted !== prevProps.submitted) {
+      this.unSubmit()
     }
   }
 
@@ -68,78 +87,59 @@ class AdInput extends Component {
     }
   }
 
-  submit() {
+  handleFocus() {
+    const { defaultValue } = this.props
+    const { value } = this.state
+    if (value !== null && value === defaultValue) {
+      // this.input.setSelectionRange(0, value.length)
+    }
+  }
+
+  handleSubmit() {
     const { valid, submitted } = this.state
     if (valid) {
       if (!submitted) {
         this.setState({
           submitted: true,
         })
-        setTimeout(() => {
-          const { onSubmit } = this.props
-          if (onSubmit) {
-            onSubmit()
-          }
-        }, 200)
+        const { onSubmit } = this.props
+        if (onSubmit) {
+          onSubmit()
+        }
       }
     }
   }
 
   handleKeyDown(event) {
     if (event.keyCode === 13) {
-      this.submit()
+      this.handleSubmit()
     }
   }
 
   handleChange(event) {
     const { value } = event.target
-    const { onChange, submitTrigger } = this.props
+    const {
+      onChange,
+    } = this.props
     this.setState({
       value,
       submitted: false,
+    }, () => {
+      this.validate()
     })
     if (onChange) {
       onChange(value, event)
     }
+  }
 
-    this.evaluateValidator(value, (valid) => {
+  validate() {
+    const { validate, type } = this.props
+    const { value } = this.state
+    evaluateValidation(validate || type, value, (valid) => {
       this.setState({
         valid,
       })
-
-      if (valid && isFluidAsChange(submitTrigger)) {
-        this.submit()
-      }
     })
-  }
-
-  handleMouseEnter() {
-    const { submitTrigger } = this.props
-    if (isFluidAsHover(submitTrigger)) {
-      this.submit()
-    }
-  }
-
-  evaluateValidator(value, callback) {
-    const { validator } = this.props
-    if (callback) {
-      if (!validator) {
-        const { type } = this.props
-        if (type === 'email') {
-          callback(value.match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/))
-        } else {
-          callback(true)
-        }
-      } else if (typeof validator === 'function') {
-        validator(value, callback)
-      } else if (typeof validator === 'number') {
-        callback(value.length >= validator)
-      } else {
-        const regex = new RegExp(validator)
-
-        callback(`${value}`.match(regex))
-      }
-    }
   }
 
   focus() {
@@ -152,6 +152,12 @@ class AdInput extends Component {
     if (this.input) {
       this.input.blur()
     }
+  }
+
+  unSubmit() {
+    this.setState({
+      submitted: false,
+    })
   }
 
   renderLeft(theme) {
@@ -186,8 +192,9 @@ class AdInput extends Component {
   renderRight(theme) {
     const {
       showSubmit,
-      validator,
+      validate,
       disabled,
+      type,
     } = this.props
 
     const {
@@ -197,7 +204,7 @@ class AdInput extends Component {
       value,
     } = this.state
 
-    if (!validator && !showSubmit) {
+    if ((validate === null && type === 'text') && !showSubmit) {
       return null
     }
 
@@ -206,7 +213,7 @@ class AdInput extends Component {
         <button
           type="button"
           className={`${style.right} ${style.button} ${style[theme]} ${show >= 4 ? style.show : ''} ${submitted ? style.submitted : ''}`}
-          onClick={this.submit}
+          onClick={this.handleSubmit}
           disabled={!valid || disabled}
           onMouseEnter={this.handleMouseEnter}
         >
@@ -294,32 +301,81 @@ AdInput.propTypes = {
    */
   icon: PropTypes.string,
   /**
+   * [prefix description]
+   * @type {[type]}
+   */
+  prefix: PropTypes.string,
+  /**
    * if set to true, the input will show up in a progressive animation
    * @type {boolean}
    */
   animated: PropTypes.bool,
+  /**
+   * callback called when the value of the input change
+   * @type {function}
+   */
   onChange: PropTypes.func,
+  /**
+   * callback called when the button is clicked or the key enter is pressed
+   * @type {function}
+   */
   onSubmit: PropTypes.func,
+  /**
+   * default value to pass to the input
+   * @type {string|number}
+   */
   defaultValue: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
   ]),
-  validator: PropTypes.oneOfType([
+  /**
+   * value pass to the input, is used to contrain the input value to a specific value
+   */
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
+  /**
+   * the validate is a way to validate the value of the input. Until the value is not
+   * validated, the input cannot be submitted.
+   * The validate can be a string representing a regex, a asynchronous function or a number
+   * representing a minimal length requested.
+   * If no validate is defined, a default validate will be used depending of the type
+   * of the input requested. The type text doesn't provide any validate
+   */
+  validate: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.func,
     PropTypes.number,
   ]),
+  /**
+   * callback called when the animation of the input is finished
+   */
   onAnimationFinished: PropTypes.func,
+  /**
+   * show the submit button integrated in the input
+   */
   showSubmit: PropTypes.bool,
-  submitTrigger: PropTypes.oneOf([
-    'manual',
-    'hover',
-    'click',
-  ]),
+  /**
+   * if set to true, the input is in read only
+   */
   readOnly: PropTypes.bool,
+  /**
+   * name to set to the input
+   */
   name: PropTypes.string,
+  /**
+   * if set to true, the input is disabled
+   */
   disabled: PropTypes.bool,
-  prefix: PropTypes.string,
+  /**
+   * when the value changes to true, the input is focus
+   */
+  focus: PropTypes.bool,
+  /**
+   * when the value changes to false, the input is unsubmitted
+   */
+  submitted: PropTypes.bool,
 }
 
 AdInput.defaultProps = {
@@ -327,18 +383,20 @@ AdInput.defaultProps = {
   type: 'text',
   placeholder: '',
   icon: '',
+  prefix: '',
   animated: false,
   onChange: null,
   onSubmit: null,
   defaultValue: '',
-  validator: null,
+  value: '',
+  validate: null,
   onAnimationFinished: null,
   showSubmit: false,
-  submitTrigger: 'click',
   readOnly: false,
   name: '',
   disabled: false,
-  prefix: '',
+  focus: false,
+  submitted: false,
 }
 
 

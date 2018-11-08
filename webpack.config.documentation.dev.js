@@ -74,6 +74,7 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, './documentation/index.html'),
+      favicon: path.resolve(__dirname, './documentation/favicon.png'),
     }),
     new webpack.HotModuleReplacementPlugin(),
   ],
@@ -85,12 +86,3 @@ module.exports = {
     historyApiFallback: true,
   },
 }
-
-//
-// // On ajoute notre react-hot-loader/patch au point d'entrée
-// if (process.env.NODE_ENV !== 'production') {
-//   config.plugins.push(new webpack.NamedModulesPlugin())
-//   config.entry = ['react-hot-loader/patch', config.entry]
-// }
-//
-//  = config

@@ -90,13 +90,13 @@ class Input extends Component {
         </Section>
         <Section index={18} title="Validation" description="When the application expects data with specific format, it is important to show it to the user as soon as possible with a feedback. If the input is linked to a button, it will be automatically disabled until the value is valid.">
           <Example>
-            <AdInput placeholder="Input with button with validation" showSubmit validator={5} />
+            <AdInput placeholder="Input with button with validation" showSubmit validate={5} />
           </Example>
           <p>
             Otherwise, {ALDEBARION} will display an indicator on the right.
           </p>
           <Example>
-            <AdInput placeholder="Input with indicator" validator={5} />
+            <AdInput placeholder="Input with indicator" validate={5} />
           </Example>
           <blockquote>
             If you do not define a validator by yourself, a default validator is automatically set

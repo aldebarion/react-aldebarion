@@ -1,0 +1,91 @@
+@import "~styles/themes";
+
+.center {
+  text-align: center;
+  padding-bottom: 40px;
+
+  .raw {
+    outline: none;
+    background: transparent;
+    color: inherit;
+    border: none;
+    font-size: 1em;
+    cursor: pointer;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+
+.slider {
+  width: 100%;
+  .slide {
+    position: absolute;
+    top: 10px;
+    bottom: 10px;
+    right: 10px;
+    left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @each $theme in $themes {
+      &.#{$theme} {
+        border: 1px solid foreground($theme);
+      }
+    }
+  }
+
+  .viewBox {
+    width: 50%;
+    height: 50%;
+  }
+
+  .current {
+    width: 120%;
+    height: 150%;
+  }
+}
+
+.clean {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+
+.customDice {
+  width: 100%;
+  .face {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+
+    &.face1 {
+      background: url('./assets/ironman.jpg');
+      background-size: cover;
+      background-position: center center;
+    }
+
+    &.face2 {
+      background: url('./assets/tron.jpg');
+      background-size: cover;
+      background-position: center center;
+    }
+
+    &.face3 {
+      background: url('./assets/oblivion.jpg');
+      background-size: cover;
+      background-position: center center;
+    }
+
+    &.face4 {
+      background: url('./assets/westworld.jpg');
+      background-size: cover;
+      background-position: center center;
+    }
+
+  }
+}

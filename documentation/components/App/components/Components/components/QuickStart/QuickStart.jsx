@@ -14,6 +14,10 @@ export default () => (
         If you want to be kept informed about the progress of Aldebarion,
         remember to watch the github.
       </p>
+      <p>
+        It is also planned to be implemented for some 3D engines for Virtual Reality/Augmented Reality so if you feel 
+        yourself ready to help, do not hesitate!
+      </p>
     </AnimatedItem>
   </Page>
 )

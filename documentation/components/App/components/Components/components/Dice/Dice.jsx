@@ -105,7 +105,7 @@ class Dice extends Component {
             <Section index={12} title="With components">
               <Example className={style.clean}>
                 <div className={style.center}>
-                  <button className={style.raw} type="button" onClick={this.changeFace('widgetsFace', 4)}>Next</button>
+                  <button className={style.raw} type="button" onClick={this.changeFace('widgetsFace', 3)}>Next</button>
                 </div>
                 <AdDice className={style.customDice} face={widgetsFace} height={150}>
                   <AdInput placeholder="Input 1" />

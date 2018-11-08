@@ -1,9 +1,11 @@
 @import "~styles/themes/moon_light";
 @import "~styles/themes/frozen_winter";
+@import "~styles/themes/corporate_tech";
 
 $foreground: (
   "moon-light": $moon_light_foreground,
-  "frozen-winter": $frozen_winter_foreground
+  "frozen-winter": $frozen_winter_foreground,
+  "corporate-tech": $corporate_tech_foreground
 );
 
 @function foreground($theme) {
@@ -12,7 +14,8 @@ $foreground: (
 
 $foreground_hue1: (
   "moon-light": $moon_light_foreground_hue1,
-  "frozen-winter": $frozen_winter_foreground_hue1
+  "frozen-winter": $frozen_winter_foreground_hue1,
+  "corporate-tech": $corporate_tech_foreground_hue1
 );
 
 @function foregroundHue1($theme) {
@@ -21,7 +24,8 @@ $foreground_hue1: (
 
 $foreground_hue2: (
   "moon-light": $moon_light_foreground_hue2,
-  "frozen-winter": $frozen_winter_foreground_hue2
+  "frozen-winter": $frozen_winter_foreground_hue2,
+  "corporate-tech": $corporate_tech_foreground_hue2
 );
 
 @function foregroundHue2($theme) {
@@ -30,7 +34,8 @@ $foreground_hue2: (
 
 $background: (
   "moon-light": $moon_light_background,
-  "frozen-winter": $frozen_winter_background
+  "frozen-winter": $frozen_winter_background,
+  "corporate-tech": $corporate_tech_background
 );
 
 @function background($theme) {
@@ -39,7 +44,8 @@ $background: (
 
 $defaultFontFamily: (
   "moon-light": $moon_light_defaultFontFamily,
-  "frozen-winter": $moon_light_defaultFontFamily
+  "frozen-winter": $moon_light_defaultFontFamily,
+  "corporate-tech": $corporate_tech_defaultFontFamily
 );
 
 @function defaultFontFamily($theme) {
@@ -48,7 +54,8 @@ $defaultFontFamily: (
 
 $titleFontFamily: (
   "moon-light": $moon_light_titleFontFamily,
-  "frozen-winter": $moon_light_titleFontFamily
+  "frozen-winter": $moon_light_titleFontFamily,
+  "corporate-tech": $corporate_tech_titleFontFamily
 );
 
 @function titleFontFamily($theme) {
@@ -57,7 +64,8 @@ $titleFontFamily: (
 
 $subtitleFontFamily: (
   "moon-light": $moon_light_subtitleFontFamily,
-  "frozen-winter": $moon_light_subtitleFontFamily
+  "frozen-winter": $moon_light_subtitleFontFamily,
+  "corporate-tech": $corporate_tech_subtitleFontFamily
 );
 
 @function subtitleFontFamily($theme) {
@@ -66,7 +74,8 @@ $subtitleFontFamily: (
 
 $defaultFontWeight: (
   "moon-light": $moon_light_defaultFontWeight,
-  "frozen-winter": $moon_light_defaultFontWeight
+  "frozen-winter": $moon_light_defaultFontWeight,
+  "corporate-tech": $corporate_tech_defaultFontWeight
 );
 
 @function defaultFontWeight($theme) {
@@ -75,7 +84,8 @@ $defaultFontWeight: (
 
 $boldFontWeight: (
   "moon-light": $moon_light_boldFontWeight,
-  "frozen-winter": $moon_light_boldFontWeight
+  "frozen-winter": $moon_light_boldFontWeight,
+  "corporate-tech": $corporate_tech_boldFontWeight
 );
 
 @function boldFontWeight($theme) {
@@ -84,7 +94,8 @@ $boldFontWeight: (
 
 $titleFontWeight: (
   "moon-light": $moon_light_titleFontWeight,
-  "frozen-winter": $moon_light_titleFontWeight
+  "frozen-winter": $moon_light_titleFontWeight,
+  "corporate-tech": $corporate_tech_titleFontWeight
 );
 
 @function titleFontWeight($theme) {
@@ -102,7 +113,8 @@ $subtitleFontWeight: (
 
 $defaultFontSize: (
   "moon-light": $moon_light_defaultFontSize,
-  "frozen-winter": $moon_light_defaultFontSize
+  "frozen-winter": $moon_light_defaultFontSize,
+  "corporate-tech": $corporate_tech_defaultFontSize
 );
 
 @function defaultFontSize($theme) {
@@ -111,7 +123,8 @@ $defaultFontSize: (
 
 $themes: [
   'moon-light',
-  'frozen-winter'
+  'frozen-winter',
+  'corporate-tech'
 ];
 
 $borderWidth: 1px;

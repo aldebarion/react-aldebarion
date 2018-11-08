@@ -4,9 +4,7 @@
 
 > Do not hesitate to involve yourself.
 
-**React-Aldebarion** is the front-end framework built for the future.
-
-![Smark desk](examples/assets/table.png)
+**React-Aldebarion** is the react implementation of the Design System [Aldebarion](https://github.com/aldebarion/aldebarion)
 
 This framework helps you to:
 
@@ -19,7 +17,7 @@ It is very adapted to implement interfaces for your control table, HUDS, dashboa
 ## Getting started
 
 
-### Installation
+### How to install?
 ```bash
 # with npm
 $ npm install react-aldebarion
@@ -45,16 +43,11 @@ $ yarn start
 * clean
 * straight
 
-
-
 Focus on what is important
 
 ### Consistency
 
 * consistency over time, applications and devices
-*
-
-
 
 ### Efficiency
 
