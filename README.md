@@ -1,10 +1,13 @@
 # react-aldebarion
 
-**BE CAREFUL: this module is still in development, you should not use it except if you are ready to debug it yourself. A first release will be delivered soon.**
+:warning::warning: This module is still in development, you should not use it except if you are ready to debug it yourself. A first release will be delivered soon.**
 
 > Do not hesitate to involve yourself.
 
-**React-Aldebarion** is the react implementation of the Design System [Aldebarion](https://github.com/aldebarion/aldebarion)
+**React-Aldebarion** is the react implementation of [Aldebarion](https://github.com/aldebarion/aldebarion),
+the Design System built for the future
+
+![Smark desk](assets/table.png)
 
 This framework helps you to:
 
@@ -16,7 +19,6 @@ It is very adapted to implement interfaces for your control table, HUDS, dashboa
 
 ## Getting started
 
-
 ### How to install?
 ```bash
 # with npm
@@ -25,58 +27,24 @@ $ npm install react-aldebarion
 $ yarn react-aldebarion
 ```
 
-### Development
+### How to use it?
 
-```bash
-# with npm
-$ npm start
-# with yarn
-$ yarn start
-```
+The API has not been released yet.
 
 ## Guidelines
 
-### Minimalism
+You can read all guidelines on [Aldebarion github](https://github.com/aldebarion/aldebarion).
+It is important to follow these guidelines to use Aldebarion at its full potential.
 
-* kind of scandinavian refined style
-* limit of austere
-* clean
-* straight
+## Roadmap
 
-Focus on what is important
-
-### Consistency
-
-* consistency over time, applications and devices
-
-### Efficiency
-
-* give priority to efficiency
-* long-term interface
-
-### Multi devices
-
-* ensure responsiveness compatible with all platforms including computers, smartphone, tablets, large screens, ambient devices and HUDs.
-* use a minimal set of contrasted colors to manage even the most lightning environments
-* ensure continuity between devices: the user can begin on one device and then switch to another device without degradation of experience
-
-
-### Ergonomy
-
-* accompany the look of the user: display everything with transition
-* do not use no frills except to catch the user attention
-* integrate several levels of reading
-
-### Adaptation to user
-
-* make interface adaptable/adaptive to user
-
+* create appearance animation for each widgets
+* add widgets for chart
+* add widgets for HUD
 
 ## Inspirations
 
 * https://digitalsynopsis.com/design/cinema-palettes-famous-movie-colors/
-
-
 
 ## Libraries
 
