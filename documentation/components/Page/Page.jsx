@@ -13,16 +13,16 @@ const Page = ({
 }) => (
   <contexts.Theme.Consumer>
     {({ theme }) => (
-      <AnimatedGroup animation="fadeInRight" interval={50} maxIndex={100}>
+      <AnimatedGroup animation="fadeInRight" interval={50}>
         <div className={`${style.Page} ${style[theme]} ${className}`}>
-          <AnimatedItem animationIndex={1}>
+          <AnimatedItem>
             <h1 className={`${style.title} ${style[theme]}`}>
               {title}
             </h1>
           </AnimatedItem>
           { description
             ? (
-              <AnimatedItem animationIndex={2}>
+              <AnimatedItem>
                 <p className={`${style.description} ${style[theme]}`}>
                   {description}
                 </p>

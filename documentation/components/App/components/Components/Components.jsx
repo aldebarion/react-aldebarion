@@ -25,6 +25,7 @@ import Dice from './components/Dice'
 import Gallery from './components/Gallery'
 import TypeWriter from './components/TypeWriter'
 import Slider from './components/Slider'
+import Select from './components/Select'
 
 const routes = [
   {
@@ -91,6 +92,11 @@ const routes = [
         component: Input,
       },
       {
+        route: '/components/select',
+        label: 'Select',
+        component: Select,
+      },
+      {
         route: '/components/slider',
         label: 'Slider',
         component: Slider,
@@ -119,13 +125,6 @@ const routes = [
   },
 ]
 
-let totalIndex = 0
-
-routes.forEach((route, index) => {
-  routes[index].index = 1 + totalIndex
-  totalIndex = totalIndex + 1 + route.routes.length
-})
-
 export default class Components extends Component {
   render() {
     return (
@@ -133,25 +132,24 @@ export default class Components extends Component {
         {({ theme }) => (
           <div className={style.Components}>
             <div className={style.left} ref={(e) => { this.app = e }}>
-              <AnimatedGroup animation="fadeIn" interval={50} maxIndex={200}>
+              <AnimatedGroup animation="fadeIn" interval={50}>
                 <ul className={style.list}>
                   {
                     routes.map(section => (
-                      <Fragment key={section.title}>
-                        <AnimatedItem animationIndex={section.index}>
-                          <li className={`${style.subtitle} ${style[theme]}`}>{section.title}</li>
-                        </AnimatedItem>
-                        {section.routes.map((route, index) => (
-                          <AnimatedItem
-                            key={route.route}
-                            animationIndex={section.index + index + 1}
-                          >
-                            <li className={style.item}>
-                              <NavLink className={`${style.link} ${style[theme]}`} activeClassName={style.active} to={route.route}>{route.label}</NavLink>
-                            </li>
-                          </AnimatedItem>
+                      <AnimatedItem key={section.title}>
+                        <li className={`${style.subtitle} ${style[theme]}`}>{section.title}</li>
+                        {section.routes.map(({ route, label }) => (
+                          <li className={style.item} key={route}>
+                            <NavLink
+                              className={`${style.link} ${style[theme]}`}
+                              activeClassName={style.active}
+                              to={route}
+                            >
+                              {label}
+                            </NavLink>
+                          </li>
                         ))}
-                      </Fragment>
+                      </AnimatedItem>
                     ))
                   }
                 </ul>

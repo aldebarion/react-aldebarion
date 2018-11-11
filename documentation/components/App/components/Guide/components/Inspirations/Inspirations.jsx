@@ -18,10 +18,9 @@ import westworld from './assets/westworld.jpg'
 
 const Inspirations = () => (
   <contexts.Theme.Consumer>
-    {({ theme }) => (
+    {(/* { theme } */) => (
       <Page title="Inspirations" className={`${style.page}`} description="Aldebarion is inspired by a lot of movies and series.">
         <Section
-          index={3}
           title="Oblivion"
           description="Oblivion movie contains a lot of very detailed user interfaces.
           Even if this kind of heavy detailed interfaces are not the priority of Aldebarion,
@@ -36,7 +35,6 @@ const Inspirations = () => (
           </p>
         </Section>
         <Section
-          index={8}
           title="Iron Man"
           description="Iron is maybe one of the first movie to show futuristic HUDs. This movie is very
           important for Aldebarion since it addresses key points about user interfaces.
@@ -51,7 +49,6 @@ const Inspirations = () => (
           </p>
         </Section>
         <Section
-          index={13}
           title="Westworld"
           description="Westworld represent very well what Aldebarion is designed for: user interfaces built for productivity and to be timeless."
         >

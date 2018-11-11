@@ -10,18 +10,17 @@ const Section = ({
   title,
   description,
   children,
-  index,
 }) => (
   <contexts.Theme.Consumer>
     {({ theme }) => (
       <section className={style.Section}>
-        <AnimatedItem animationIndex={index}>
+        <AnimatedItem>
           <h2 className={`${style.title} ${style[theme]}`}>{title}</h2>
         </AnimatedItem>
         {
           description
             ? (
-              <AnimatedItem animationIndex={index + 1}>
+              <AnimatedItem>
                 <p className={`${style.description} ${style[theme]}`}>
                   {description}
                 </p>
@@ -30,7 +29,7 @@ const Section = ({
         }
         <div className={style.content}>
           {React.Children.toArray(children).map((child, index2) => (
-            <AnimatedItem key={`child-${index2 + index + 2}`} animationIndex={index + index2 + 2}>
+            <AnimatedItem key={`child-${index2 + 1}`}>
               {child}
             </AnimatedItem>
           ))}
@@ -50,14 +49,12 @@ Section.propTypes = {
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
   ]),
-  index: PropTypes.number,
 }
 
 Section.defaultProps = {
   title: '',
   description: '',
   children: [],
-  index: null,
 }
 
 export default Section

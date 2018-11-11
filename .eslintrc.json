@@ -17,7 +17,7 @@
   "settings": {
     "import/resolver": {
       "webpack": {
-        "config": "webpack.config.examples.dev.js"
+        "config": "webpack.config.documentation.dev.js"
       }
     }
   }

@@ -15,6 +15,7 @@ export AdGallery from './components/Animations/AdGallery'
 export AdFixedScroll from './components/Layout/AdFixedScroll'
 export AdTypeWriter from './components/Animations/AdTypeWriter'
 export AdSlider from './components/Form/AdSlider'
+export AdSelect from './components/Form/AdSelect'
 
 export const ALDEBARION = 'ALDEBÅRIØN'
 

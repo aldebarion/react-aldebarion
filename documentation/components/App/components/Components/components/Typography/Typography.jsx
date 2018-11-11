@@ -15,7 +15,7 @@ const openInTab = (event) => {
 
 export default () => (
   <Page title="Typography" description={`All fonts in ${ALDEBARION} are very functional.`}>
-    <Section title="Basic usage" index={3}>
+    <Section title="Basic usage">
       <p>
         The main font in {ALDEBARION} is <a href="http://indestructibletype.com/Jost.html" onClick={openInTab}>Jost</a>*, a font very similar to Futura.
       </p>

@@ -12,7 +12,7 @@ import transformer from './assets/transformers.gif'
 
 const Animations = () => (
   <contexts.Theme.Consumer>
-    {({ theme }) => (
+    {(/* { theme } */) => (
       <Page
         title="Animations"
         className={`${style.page}`}
@@ -21,14 +21,13 @@ const Animations = () => (
         understand
         how the page is composed and with which elements he can interact."
       >
-        <AnimatedItem animationIndex={3}>
+        <AnimatedItem>
           <blockquote>
             Animations are designed to increase the usability of your application
             following <Link href="https://medium.com/ux-in-motion/creating-usability-with-motion-the-ux-in-motion-manifesto-a87a4584ddc">motion manifesto</Link>.
           </blockquote>
         </AnimatedItem>
         <Section
-          index={4}
           title="Apparitions"
           description="On high-productivity applications, a lot of data is often displayed. In
           order to avoid the user to be overloaded as soon as he arrives on the first page, it is
@@ -54,7 +53,6 @@ const Animations = () => (
           </p>
         </Section>
         <Section
-          index={10}
           title="Interactions"
           description="Everytime a component is interactive, he should be animated when the mouse
           goes
@@ -73,7 +71,6 @@ const Animations = () => (
           </p>
         </Section>
         <Section
-          index={14}
           title="Transitions"
           description="Last but not the least, it is also important to apply the same best practices
           after the first apparition, when views are changing."

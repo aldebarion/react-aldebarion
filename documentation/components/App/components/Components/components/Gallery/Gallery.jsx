@@ -41,7 +41,7 @@ class Gallery extends Component {
       <contexts.Theme.Consumer>
         {({ theme }) => (
           <Page title="Gallery" description="The Gallery is a component to help you create animated sliding component.">
-            <Section index={2} title="Basic usage">
+            <Section title="Basic usage">
               <Example>
                 <div className={style.center}>
                   <button className={style.raw} type="button" onClick={this.changeFace('basicSlider', 4)}>Next</button>
@@ -54,7 +54,7 @@ class Gallery extends Component {
                 </AdGallery>
               </Example>
             </Section>
-            <Section index={4} title="Sophisticated">
+            <Section title="Sophisticated">
               <Example>
                 <div className={style.center}>
                   <button className={style.raw} type="button" onClick={this.changeFace('gallerySlider', 4)}>Next</button>

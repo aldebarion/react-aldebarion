@@ -13,7 +13,7 @@ const Introduction = () => (
   <contexts.Theme.Consumer>
     {({ theme }) => (
       <Page title="Introduction" className={`${style.page}`}>
-        <AnimatedItem animationIndex={3}>
+        <AnimatedItem>
           <p className={style[theme]}>
             Aldebarion is a web framework to help you build user interfaces ready for the future.
           </p>

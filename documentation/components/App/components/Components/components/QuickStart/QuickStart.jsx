@@ -5,7 +5,7 @@ import Page from '../../../../../Page'
 
 export default () => (
   <Page title="Quick start" description="Aldebarion is not ready yet. Once the framework ready, it will be available for React 16.3+ and Vue2.">
-    <AnimatedItem animationIndex={3}>
+    <AnimatedItem>
       <p>
         However the design of few components is already implemented. So please take a look to them
         and do not hesitate to propose improvements on the github.
@@ -15,7 +15,7 @@ export default () => (
         remember to watch the github.
       </p>
       <p>
-        It is also planned to be implemented for some 3D engines for Virtual Reality/Augmented Reality so if you feel 
+        It is also planned to be implemented for some 3D engines for Virtual Reality/Augmented Reality so if you feel
         yourself ready to help, do not hesitate!
       </p>
     </AnimatedItem>

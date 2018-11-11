@@ -4,6 +4,8 @@
 .AdBoard {
   -webkit-font-smoothing: antialiased!important;
   -moz-osx-font-smoothing: grayscale!important;
+  position: relative;
+  z-index: 10;
 
   * {
     &::-webkit-scrollbar {

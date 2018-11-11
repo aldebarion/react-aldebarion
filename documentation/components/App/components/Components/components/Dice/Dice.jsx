@@ -53,7 +53,7 @@ class Dice extends Component {
       <contexts.Theme.Consumer>
         {({ theme }) => (
           <Page title="Dice" description="The Dice is a component to help you animate components like they were on different faces of a solid. It is very useful when you want to show different steps of a process.">
-            <Section index={3} title="Basic usage" description="4 faces that rotate.">
+            <Section title="Basic usage" description="4 faces that rotate.">
               <Example>
                 <div className={style.center}>
                   <button className={style.raw} type="button" onClick={this.changeFace('basicFace', 4)}>Next</button>
@@ -66,7 +66,7 @@ class Dice extends Component {
                 </AdDice>
               </Example>
             </Section>
-            <Section index={6} title="With 2 faces">
+            <Section title="With 2 faces">
               <Example>
                 <div className={style.center}>
                   <button className={style.raw} type="button" onClick={this.changeFace('twoFace', 2)}>Next</button>
@@ -77,7 +77,7 @@ class Dice extends Component {
                 </AdDice>
               </Example>
             </Section>
-            <Section index={8} title="With 3 faces">
+            <Section title="With 3 faces">
               <Example>
                 <div className={style.center}>
                   <button className={style.raw} type="button" onClick={this.changeFace('threeFace', 3)}>Next</button>
@@ -89,7 +89,7 @@ class Dice extends Component {
                 </AdDice>
               </Example>
             </Section>
-            <Section index={10} title="With custom design">
+            <Section title="With custom design">
               <Example className={style.clean}>
                 <div className={style.center}>
                   <button className={style.raw} type="button" onClick={this.changeFace('customFace', 4)}>Next</button>
@@ -102,7 +102,7 @@ class Dice extends Component {
                 </AdDice>
               </Example>
             </Section>
-            <Section index={12} title="With components">
+            <Section title="With components">
               <Example className={style.clean}>
                 <div className={style.center}>
                   <button className={style.raw} type="button" onClick={this.changeFace('widgetsFace', 3)}>Next</button>

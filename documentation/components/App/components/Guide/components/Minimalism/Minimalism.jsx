@@ -15,7 +15,7 @@ const Minimalism = () => (
   <contexts.Theme.Consumer>
     {({ theme }) => (
       <Page title="Minimalism" className={`${style.page}`} description="The most important specificity of Aldebarion is the minimalist design.">
-        <AnimatedItem animationIndex={3}>
+        <AnimatedItem>
           <p className={style[theme]}>
             With minimalism, Aldebarion wants software applications
             to give back the freedom to the user and

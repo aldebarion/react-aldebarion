@@ -60,22 +60,21 @@ export default () => (
         <div className={style.left}>
           <AnimatedGroup animation="fadeIn" interval={50} maxIndex={200}>
             <ul className={style.list}>
-              {
-                routes.map((route, index) => (
-                  <AnimatedItem animationIndex={index + 1} key={route.route || route.title}>
-                    {
-                      route.title ? (
-                        <li className={`${style.subtitle} ${style[theme]}`}>{route.title}</li>
-                      ) : (
-                        <li key={route.route} className={style.item}>
-                          <NavLink className={`${style.link} ${style[theme]}`} activeClassName={style.active} to={route.route}>{route.label}</NavLink>
-                        </li>
-                      )
-                    }
-                  </AnimatedItem>
-
-                ))
-              }
+              <AnimatedItem>
+                {
+                  routes.map(({ route, title, label }) => (
+                    title ? (
+                      <li key={route || title} className={`${style.subtitle} ${style[theme]}`}>{title}</li>
+                    ) : (
+                      <li key={route} className={style.item}>
+                        <NavLink className={`${style.link} ${style[theme]}`} activeClassName={style.active} to={route}>
+                          {label}
+                        </NavLink>
+                      </li>
+                    )
+                  ))
+                }
+              </AnimatedItem>
             </ul>
           </AnimatedGroup>
         </div>

@@ -9,7 +9,7 @@ import style from './Consistency.style'
 
 const Consistency = () => (
   <contexts.Theme.Consumer>
-    {({ theme }) => (
+    {(/* { theme } */) => (
       <Page
         title="Consistency"
         className={`${style.page}`}
@@ -17,7 +17,6 @@ const Consistency = () => (
         consistency is the first reason of the creation of this framework."
       >
         <Section
-          index={3}
           title="Over time"
           description="First of all, applications built with Aldebarion should be designed to be consistent
         over time. Your application should keep the same efficiency years after years.

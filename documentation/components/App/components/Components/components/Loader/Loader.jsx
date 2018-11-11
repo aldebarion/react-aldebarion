@@ -46,17 +46,17 @@ export default class Loader extends Component {
         description="When the user needs to wait, it is important to show him that
         the application is working for him."
       >
-        <Section index={3} title="Basic usage" description="An hypnotic animated loarder to lost the user in his mind.">
+        <Section title="Basic usage" description="An hypnotic animated loarder to lost the user in his mind.">
           <Example>
             <AdLoader className={style.loader} />
           </Example>
         </Section>
-        <Section index={6} title="Impatient loader">
+        <Section title="Impatient loader">
           <Example>
             <AdLoader className={style.loader} fast />
           </Example>
         </Section>
-        <Section index={8} title="In button">
+        <Section title="In button">
           <Example>
             <AdButton loading={loading1} label="Click me" onClick={this.onClick(1)} />
             <AdButton loading={loading2} label="Click me" onClick={this.onClick(2)} iconPosition="right" />

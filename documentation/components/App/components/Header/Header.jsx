@@ -26,10 +26,10 @@ const Header = ({ className }) => (
   <contexts.Theme.Consumer>
     {({ theme }) => (
       <header className={`${style.Header} ${style[theme]} ${className}`}>
-        <AnimatedGroup animation="fadeInTop" interval={50} maxIndex={200}>
+        <AnimatedGroup animation="fadeInTop" interval={50}>
           <div className={style.left}>
             <h1 className={style.title}>
-              <AnimatedItem animationIndex={1}>
+              <AnimatedItem>
                 <NavLink className={style.titleLink} to="/">
                   { ALDEBARION }
                 </NavLink>
@@ -37,11 +37,18 @@ const Header = ({ className }) => (
             </h1>
           </div>
           <div className={style.right}>
-            {routes.map((route, index) => (
-              <AnimatedItem key={`index-${6 + index}`} animationIndex={6 + index * 5}>
-                <NavLink key={route.route} className={`${style.link} ${style[theme]}`} activeClassName={style.active} to={route.route}>{route.label}</NavLink>
-              </AnimatedItem>
-            ))}
+            <AnimatedItem>
+              {routes.map(({ route, label }) => (
+                <NavLink
+                  key={route}
+                  className={`${style.link} ${style[theme]}`}
+                  activeClassName={style.active}
+                  to={route}
+                >
+                  {label}
+                </NavLink>
+              ))}
+            </AnimatedItem>
           </div>
         </AnimatedGroup>
       </header>

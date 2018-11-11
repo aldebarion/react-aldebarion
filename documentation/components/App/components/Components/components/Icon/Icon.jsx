@@ -11,7 +11,7 @@ import style from './Icon.style'
 
 export default () => (
   <Page title="Icon" description="Use straight, thin and minimalist icons to illustrate your point.">
-    <Section index={3} title="Basic usage" description="These icons are font icons.">
+    <Section title="Basic usage" description="These icons are font icons.">
       <Example>
         <AdIcon className={style.icon} icon="user" />
         <AdIcon className={style.icon} icon="email" />
@@ -19,7 +19,7 @@ export default () => (
         <AdIcon className={style.icon} icon="arrow-right" />
       </Example>
     </Section>
-    <Section index={6} title="All icons">
+    <Section title="All icons">
       <p>
         {ALDEBARION} uses themify icons so you can retrieve all icons on
         the <Link href="https://themify.me/themify-icons">website</Link>.

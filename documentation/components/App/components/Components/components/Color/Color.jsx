@@ -12,14 +12,12 @@ import colors from './colors'
 export default () => (
   <Page title="Color" description={`${ALDEBARION} is also minimalist in the colors. Each theme contain only 5 colors.`}>
     <Section
-      index={2}
       title="Moon Light"
       description="This theme is adapted to dark environments like screens in nights."
     >
       <Palette colors={colors.moonLight} />
     </Section>
     <Section
-      index={4}
       title="Frozen Winter"
       description="This theme is adapted to light environments."
     >

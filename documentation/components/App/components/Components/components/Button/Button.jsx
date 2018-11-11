@@ -10,17 +10,17 @@ import style from './Button.style'
 
 const Button = () => (
   <Page title="Button" description="Trigger an action and submit with buttons.">
-    <Section index={3} title="Basic usage">
+    <Section title="Basic usage">
       <Example>
         <AdButton label="button" />
       </Example>
     </Section>
-    <Section index={5} title="Disabled Button">
+    <Section title="Disabled Button">
       <Example>
         <AdButton label="Disabled button" disabled />
       </Example>
     </Section>
-    <Section index={7} title="Icon Button">
+    <Section title="Icon Button">
       <Example>
         <AdButton className={style.button} label="link" href="https://www.qwant.com" target="_blank" />
         <AdButton className={style.button} label="add" icon="plus" />
