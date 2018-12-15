@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import ThemeContext from 'contexts/Theme'
 import AdIcon from 'components/AdIcon'
-import AdIndicator from 'components/AdIndicator'
-
-import { evaluateValidation } from 'utils/validation'
 
 import style from './AdSelect.style'
 
@@ -44,6 +42,9 @@ class AdSelect extends Component {
       valid: false,
       submitted: false,
       opened: false,
+      bottom: 0,
+      left: 0,
+      right: 0,
     }
   }
 
@@ -69,6 +70,17 @@ class AdSelect extends Component {
     }, 400)
     if (this.input) {
       this.focusListener = this.input.addEventListener('focus', this.handleFocus)
+    }
+
+    if (this.container) {
+      const rect = this.container.getBoundingClientRect()
+      this.setState({
+        // top: rect.top,
+        left: this.container.scrollLeft,
+        right: rect.right,
+        bottom: this.container.scrollTop + rect.height,
+        width: rect.width,
+      })
     }
 
     this.clickOutsideEvent = window.addEventListener('click', this.handleClose)
@@ -259,6 +271,10 @@ class AdSelect extends Component {
       value,
       opened,
       stepOpened,
+      bottom,
+      left,
+      right,
+      width,
     } = this.state
     const selectedOption = options.find(currentOption => (
       AdSelect.getValue(currentOption) === value
@@ -271,7 +287,10 @@ class AdSelect extends Component {
     return (
       <ThemeContext.Consumer>
         {({ theme }) => (
-          <div className={`${style.AdSelect} ${style[theme]} ${className} ${show >= 1 ? style.showHeight : ''} ${show >= 2 ? style.showWidth : ''} ${disabled ? style.disabled : ''} `}>
+          <div
+            ref={(e) => { this.container = e }}
+            className={`${style.AdSelect} ${style[theme]} ${className} ${show >= 1 ? style.showHeight : ''} ${show >= 2 ? style.showWidth : ''} ${disabled ? style.disabled : ''} `}
+          >
             { this.renderLeft() }
             <div className={`${style.selection} ${icon || prefix ? style.noMargin : ''} ${show >= 3 ? style.showSelection : ''}`}>
               <input
@@ -287,8 +306,8 @@ class AdSelect extends Component {
                 disabled={disabled}
                 value={label}
               />
-              { opened ? (
-                <div className={style.optionList}>
+              { opened ? ReactDOM.createPortal(
+                <div className={style.optionList} style={{ top: bottom, left, width }}>
                   <div className={`${style.options} ${style[theme]}`}>
                     {options.map((option, index) => {
                       const currentValue = AdSelect.getValue(option)
@@ -304,7 +323,8 @@ class AdSelect extends Component {
                       )
                     })}
                   </div>
-                </div>
+                </div>,
+                document.getElementById('root-modal'),
               ) : null }
             </div>
             <button

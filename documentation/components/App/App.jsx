@@ -34,6 +34,7 @@ class App extends Component {
           <div className={style.margin} />
           <Footer className={style.footer} />
         </div>
+        <div id="root-modal" className={style.rootModal} />
       </AdBoard>
     )
   }

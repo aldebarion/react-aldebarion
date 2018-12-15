@@ -1,5 +1,6 @@
 
 .App {
+  position: relative;
   // position: fixed;
   // top: 0;
   // left: 0;
@@ -38,6 +39,14 @@
   // align-items: stretch;
   // justify-content: center;
   // flex-direction: column;
+}
 
-
+.rootModal {
+  position: absolute;
+  z-index: 10;
+  top: 0px;
+  left: 0;
+  right: 0;
+  background: red;
+  height: 10px;
 }
